@@ -22,6 +22,12 @@
     ddev start
     ```
 
+1. Install Composer dependencies.
+
+    ```
+    ddev composer install
+    ```
+
 1. Install the website.
 
     ```
