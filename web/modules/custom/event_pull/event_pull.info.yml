@@ -1,0 +1,5 @@
+name: Event Pull
+description: Pull events onto the website from external sources, such as Meetup.com.
+core: 8.x
+type: module
+package: Custom
