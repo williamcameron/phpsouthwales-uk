@@ -99,6 +99,11 @@
             "include": [
                 "web/modules/custom/*/composer.json"
             ]
+        },
+        "patches": {
+            "drupal/core": {
+                "Support _defaults key in service.yml files": "https://www.drupal.org/files/issues/2019-04-16/3021898-7.patch"
+            }
         }
     }
 }
