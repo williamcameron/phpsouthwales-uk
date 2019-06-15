@@ -26,4 +26,9 @@ case $OPERATION in
     # Import the initial config.
     ddev exec drush config:import -y --source=../config/sync
     ;;
+
+    'test')
+      ./helper.sh phpstan
+      ./helper.sh phpcs
+      ;;
 esac
