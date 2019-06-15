@@ -4,6 +4,9 @@ namespace Drupal\event_pull\Service\EventLoader;
 
 use Tightenco\Collect\Support\Collection;
 
+/**
+ * Provides an interace for services to load events.
+ */
 interface EventLoaderInterface {
 
   /**

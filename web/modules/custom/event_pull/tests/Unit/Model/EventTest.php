@@ -1,5 +1,7 @@
 <?php
 
+// @codingStandardsIgnoreFile
+
 namespace Drupal\Tests\event_pull\Model;
 
 use Drupal\event_pull\Model\Event;

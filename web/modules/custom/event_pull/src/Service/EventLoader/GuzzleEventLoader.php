@@ -12,6 +12,8 @@ use Tightenco\Collect\Support\Collection;
 abstract class GuzzleEventLoader implements EventLoaderInterface {
 
   /**
+   * The http_client service.
+   *
    * @var \GuzzleHttp\ClientInterface
    */
   protected $client;
