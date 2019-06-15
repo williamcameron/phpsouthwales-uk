@@ -7,6 +7,9 @@ ARGS=$*
 case $OPERATION in
   'drush') ddev exec drush $ARGS;;
 
+
+  'phpcs') ddev exec ../vendor/bin/phpcs --standard=Drupal,DrupalPractice --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md {modules,themes}/custom $ARGS;;
+
   'phpstan') ddev exec ../vendor/bin/phpstan analyse {modules,themes}/custom --level 7 $ARGS;;
 
   'refresh')
