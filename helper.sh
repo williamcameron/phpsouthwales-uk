@@ -7,6 +7,8 @@ ARGS=$*
 case $OPERATION in
   'drush') ddev exec drush $ARGS;;
 
+  'phpstan') ddev exec ../vendor/bin/phpstan analyse {modules,themes}/custom --level 7 $ARGS;;
+
   'refresh')
     # Install the site from scratch.
     ddev exec drush site:install -y
