@@ -5,3 +5,8 @@ type: theme
 base theme: tailwindcss
 libraries:
   - phpsouthwales/global-styling
+libraries-override:
+  tailwindcss/global-styling:
+    css:
+      base:
+        dist/tailwind.css: false
