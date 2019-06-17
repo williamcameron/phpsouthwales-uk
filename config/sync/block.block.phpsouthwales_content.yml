@@ -1,0 +1,22 @@
+uuid: 99a75d7b-9b07-4652-bc67-0b442ce7d803
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - phpsouthwales
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: phpsouthwales_content
+theme: phpsouthwales
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }
