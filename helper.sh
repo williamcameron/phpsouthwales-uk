@@ -13,7 +13,14 @@ case $OPERATION in
     ddev exec drush config:delete -y shortcut.set.default
     ddev exec drush config:import -y --source=../config/sync
     ;;
-  'phpcs') ddev exec ../vendor/bin/phpcs --standard=Drupal,DrupalPractice --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md {modules,themes}/custom $ARGS;;
+  'phpcs')
+    ddev exec ../vendor/bin/phpcs -v \
+    --standard=Drupal,DrupalPractice \
+    --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md \
+    --ignore=node_modules \
+    {modules,themes}/custom
+    $ARGS
+    ;;
   'phpstan') ddev exec ../vendor/bin/phpstan analyse {modules,themes}/custom --level 7 $ARGS;;
   'refresh')
     ddev composer install
