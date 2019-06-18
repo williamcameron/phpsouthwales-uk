@@ -1,12 +1,13 @@
 <?php
 
-// @codingStandardsIgnoreFile
-
 namespace Drupal\Tests\event_pull\Model;
 
 use Drupal\event_pull\Model\Event;
 use Drupal\Tests\UnitTestCase;
 
+/**
+ * Event model tests.
+ */
 class EventTest extends UnitTestCase {
 
   /**
@@ -29,13 +30,17 @@ class EventTest extends UnitTestCase {
     $this->event = new Event($data);
   }
 
-  /** @test */
-  public function get_the_event_name() {
+  /**
+   * Test retrieving the event name.
+   */
+  public function testGetEventName() {
     $this->assertSame('How to do more with PHPCS', $this->event->getName());
   }
 
-  /** @test */
-  public function get_the_event_date() {
+  /**
+   * Test retrieving the event date.
+   */
+  public function testGetEventDate() {
     $this->assertSame(1559237400, $this->event->getDate());
   }
 
