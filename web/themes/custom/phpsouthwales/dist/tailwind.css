@@ -681,6 +681,11 @@ div[id^="block-"],
   line-height: 1.5
 }
 
+.site-logo img {
+  height: 8rem;
+  width: auto
+}
+
 /**
  * This injects all of Tailwind's utility classes, generated based on your
  * config file.
