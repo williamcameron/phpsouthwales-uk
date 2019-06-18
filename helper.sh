@@ -5,6 +5,7 @@ shift
 ARGS=$*
 
 case $OPERATION in
+  'drupal') ddev exec drupal $ARGS;;
   'drush') ddev exec drush $ARGS;;
 
 
