@@ -53,6 +53,10 @@ div[id^="block-"],
   @apply mb-4 leading-normal
 }
 
+.site-logo img {
+  @apply h-32 w-auto
+}
+
 /**
  * This injects all of Tailwind's utility classes, generated based on your
  * config file.
