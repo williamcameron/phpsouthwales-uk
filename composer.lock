@@ -2739,17 +2739,17 @@
         },
         {
             "name": "drupal/tailwindcss",
-            "version": "2.3.0",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/tailwindcss.git",
-                "reference": "8.x-2.3"
+                "reference": "8.x-2.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/tailwindcss-8.x-2.3.zip",
-                "reference": "8.x-2.3",
-                "shasum": "010e330b75c34cbdd61e46e7f88a7d20d6e3c8c4"
+                "url": "https://ftp.drupal.org/files/projects/tailwindcss-8.x-2.4.zip",
+                "reference": "8.x-2.4",
+                "shasum": "3c404e07bbafe746f36eaa2bc8f2659be1ca8ea7"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -2760,8 +2760,8 @@
                     "dev-2.x": "2.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.3",
-                    "datestamp": "1560814985",
+                    "version": "8.x-2.4",
+                    "datestamp": "1560861185",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
