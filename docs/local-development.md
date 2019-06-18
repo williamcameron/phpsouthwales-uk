@@ -31,5 +31,5 @@
 1. Install the website.
 
     ```
-    ./helper.sh refresh
+    ./helper.sh install
     ```
