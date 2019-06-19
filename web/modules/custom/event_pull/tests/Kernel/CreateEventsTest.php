@@ -13,17 +13,10 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Tightenco\Collect\Support\Collection;
 
+/**
+ * Test that nodes are created from pulled events.
+ */
 class CreateEventsTest extends EntityKernelTestBase {
-
-  /**
-   * @var \Drupal\taxonomy\TermStorage
-   */
-  private $termStorage;
-
-  /**
-   * @var \Drupal\node\NodeStorage
-   */
-  private $nodeStorage;
 
   /**
    * {@inheritdoc}
@@ -33,6 +26,20 @@ class CreateEventsTest extends EntityKernelTestBase {
     'node',
     'taxonomy',
   ];
+
+  /**
+   * Node storage handler.
+   *
+   * @var \Drupal\node\NodeStorage
+   */
+  private $nodeStorage;
+
+  /**
+   * Taxonomy term storage handler.
+   *
+   * @var \Drupal\taxonomy\TermStorage
+   */
+  private $termStorage;
 
   /**
    * {@inheritdoc}
@@ -66,7 +73,6 @@ class CreateEventsTest extends EntityKernelTestBase {
 
     // When I pull it in.
     // Then the item should be queued.
-
     // When the queue is processed, the corresponding event node should be
     // created.
     $event = $this->nodeStorage->load(1);
@@ -93,11 +99,11 @@ class CreateEventsTest extends EntityKernelTestBase {
           'name' => 'Stadium Plaza',
           'lat' => 51.47688293457031,
           'lon' => -3.181555986404419,
-          'repinned' => false,
+          'repinned' => FALSE,
           'address_1' => 'Wood St',
           'city' => 'Cardiff',
           'country' => 'gb',
-          'localized_country_name' => 'United Kingdom'
+          'localized_country_name' => 'United Kingdom',
         ],
         'link' => 'https://www.meetup.com/PHP-South-Wales/events/260287298/',
         'description' => '<p>This month we have the pleasure of PHP South West organiser David Liddament coming this side of the bridge to give us an exciting talk all about Practical Static Analysis.</p>',
@@ -110,7 +116,7 @@ class CreateEventsTest extends EntityKernelTestBase {
 
     // Replace the existing http_client service with a mock Client.
     $this->container->set('http_client', new Client([
-      'handler' => HandlerStack::create($mock)
+      'handler' => HandlerStack::create($mock),
     ]));
   }
 
