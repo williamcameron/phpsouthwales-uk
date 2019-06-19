@@ -31,5 +31,5 @@
 1. Install the website.
 
     ```
-    ./helper.sh install
+    ./helper.sh drupal-install
     ```
