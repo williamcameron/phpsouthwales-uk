@@ -66,6 +66,12 @@
         "post-update-cmd": [
             "@composer drupal:scaffold",
             "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "test-phpcs": "phpcs -v --standard=Drupal,DrupalPractice --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md --ignore=node_modules web/modules/custom web/themes/custom",
+        "test-phpunit": "phpunit -c web/core web/modules/custom",
+        "test": [
+            "@test-phpunit",
+            "@test-phpcs"
         ]
     },
     "extra": {
