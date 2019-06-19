@@ -2,12 +2,19 @@
 
 To run all of the tests for the custom modules:
 
-```
-./helper.sh phpunit
+```bash
+# Run all of the tests.
+ddev composer test 
+
+# Run only PHPUnit tests.
+ddev composer test-phpunit
+
+# Run only PHPCS tests.
+ddev composer test-phpcs
 ```
 
-Any additonal arguments will be appended to the command. For example:
+Additonal arguments can be appended to the command. For example:
 
 ```
-./helper.sh phpunit --filter get_the_event_name
+ddev composer test-phpunit -- --filter get_the_event_name
 ```
