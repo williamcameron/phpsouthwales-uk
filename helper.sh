@@ -20,4 +20,7 @@ case $OPERATION in
     ddev exec drupal update:execute
     ddev exec drupal cache:rebuild
     ;;
+
+  # Defer anything else to ddev.
+  *) ddev $ARGS;;
 esac
