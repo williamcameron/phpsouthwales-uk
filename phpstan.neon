@@ -1,8 +1,8 @@
 parameters:
+  level: 7
   excludes_analyse:
     - *Test.php
     - *TestBase.php
-  level: 1
 includes:
   - vendor/mglaman/phpstan-drupal/extension.neon
   - vendor/phpstan/phpstan-deprecation-rules/rules.neon
