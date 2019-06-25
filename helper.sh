@@ -9,7 +9,7 @@ case $OPERATION in
 
   'drupal-install')
     ddev composer install
-    ddev exec drush si config_installer -y --account-name=admin123 --account-pass=admin123
+    ddev exec drush si config_installer -y --account-name=admin --account-pass=admin123
     ddev exec drupal cache:rebuild
     ;;
 
