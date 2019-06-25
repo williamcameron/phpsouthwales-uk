@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "84e76f9e02c6cff907c4b928b8ee04c7",
+    "content-hash": "deb6a35b6ae47aefaa4cbe74f6d36654",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2755,9 +2755,6 @@
                     "recurse": false,
                     "replace": false,
                     "merge-extra": false
-                },
-                "patches_applied": {
-                    "Support _defaults key in service.yml files": "https://www.drupal.org/files/issues/2019-04-16/3021898-7.patch"
                 }
             },
             "autoload": {
@@ -7340,6 +7337,80 @@
             "time": "2019-01-14T23:55:14+00:00"
         },
         {
+            "name": "mglaman/phpstan-drupal",
+            "version": "0.11.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mglaman/phpstan-drupal.git",
+                "reference": "c599d447768e12f8088aa18167f5efc7bc1c2743"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mglaman/phpstan-drupal/zipball/c599d447768e12f8088aa18167f5efc7bc1c2743",
+                "reference": "c599d447768e12f8088aa18167f5efc7bc1c2743",
+                "shasum": ""
+            },
+            "require": {
+                "nette/di": "^3.0",
+                "php": "^7.1",
+                "phpstan/phpstan": "^0.11",
+                "symfony/yaml": "~3.4.5|^4.2",
+                "webflo/drupal-finder": "^1.1"
+            },
+            "require-dev": {
+                "composer/installers": "^1.6",
+                "drupal/core": "^8.6",
+                "drush/drush": "^9.6",
+                "phpstan/phpstan-deprecation-rules": "^0.11.0",
+                "phpstan/phpstan-strict-rules": "^0.11",
+                "phpunit/phpunit": "^7.5",
+                "squizlabs/php_codesniffer": "^3.3"
+            },
+            "suggest": {
+                "phpstan/phpstan-deprecation-rules": "For catching deprecations, especially in Drupal core."
+            },
+            "type": "library",
+            "extra": {
+                "installer-paths": {
+                    "tests/fixtures/drupal/core": [
+                        "type:drupal-core"
+                    ],
+                    "tests/fixtures/drupal/libraries/{$name}": [
+                        "type:drupal-library"
+                    ],
+                    "tests/fixtures/drupal/modules/contrib/{$name}": [
+                        "type:drupal-module"
+                    ],
+                    "tests/fixtures/drupal/profiles/contrib/{$name}": [
+                        "type:drupal-profile"
+                    ],
+                    "tests/fixtures/drupal/themes/contrib/{$name}": [
+                        "type:drupal-theme"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "0.12-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PHPStan\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matt Glaman",
+                    "email": "nmd.matt@gmail.com"
+                }
+            ],
+            "description": "Drupal extension and rules for PHPStan",
+            "time": "2019-06-13T17:48:37+00:00"
+        },
+        {
             "name": "mikey179/vfsstream",
             "version": "v1.6.6",
             "source": {
@@ -8443,6 +8514,57 @@
             ],
             "description": "PHPStan - PHP Static Analysis Tool",
             "time": "2019-05-28T19:58:33+00:00"
+        },
+        {
+            "name": "phpstan/phpstan-deprecation-rules",
+            "version": "0.11.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpstan/phpstan-deprecation-rules.git",
+                "reference": "5685fe48873efc5af1f2cc95d9c1b8ae82c728fe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/phpstan-deprecation-rules/zipball/5685fe48873efc5af1f2cc95d9c1b8ae82c728fe",
+                "reference": "5685fe48873efc5af1f2cc95d9c1b8ae82c728fe",
+                "shasum": ""
+            },
+            "require": {
+                "nikic/php-parser": "^4.0",
+                "php": "~7.1",
+                "phpstan/phpstan": "^0.11.8"
+            },
+            "require-dev": {
+                "consistence/coding-standard": "^3.0.1",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
+                "jakub-onderka/php-parallel-lint": "^1.0",
+                "phing/phing": "^2.16.0",
+                "phpstan/phpstan-phpunit": "^0.11",
+                "phpunit/phpunit": "^7.0",
+                "slevomat/coding-standard": "^4.5.2"
+            },
+            "type": "phpstan-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.11-dev"
+                },
+                "phpstan": {
+                    "includes": [
+                        "rules.neon"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PHPStan\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHPStan rules for detecting usage of deprecated classes, methods, properties, constants and traits.",
+            "time": "2019-05-28T19:54:04+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",

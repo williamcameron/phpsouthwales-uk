@@ -1,8 +1,6 @@
 services:
-  _defaults:
+  Drupal\event_pull\Service\EventLoader\MeetupEventLoader:
     autowire: true
-
-  Drupal\event_pull\Service\EventLoader\MeetupEventLoader: ~
 
   GuzzleHttp\ClientInterface:
     alias: http_client
