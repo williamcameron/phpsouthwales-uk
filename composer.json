@@ -74,7 +74,7 @@
         ],
         "test-phpcs": "phpcs -v --standard=Drupal,DrupalPractice --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md --ignore=node_modules web/modules/custom web/themes/custom",
         "test-phpunit": "phpunit -c web/core web/modules/custom",
-        "test-phpstan": "phpstan analyze web/modules/custom web/themes/custom",
+        "test-phpstan": "phpstan analyze",
         "test": [
             "@test-phpunit",
             "@test-phpstan",

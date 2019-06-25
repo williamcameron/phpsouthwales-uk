@@ -1,5 +1,8 @@
 parameters:
   level: 7
+  paths:
+    - web/modules/custom
+    - web/themes/custom
   excludes_analyse:
     - *Test.php
     - *TestBase.php
