@@ -26,6 +26,7 @@
         "drupal/config_installer": "^1.8",
         "drupal/console": "^1.0.2",
         "drupal/core": "^8.7.0",
+        "drupal/migrate_tools": "^4.1",
         "drupal/tailwindcss": "^2.2",
         "drush/drush": "^9.0.0",
         "vlucas/phpdotenv": "^2.4",
