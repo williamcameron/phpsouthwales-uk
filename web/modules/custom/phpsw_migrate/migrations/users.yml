@@ -1,0 +1,29 @@
+id: phpsw_users
+
+source:
+  plugin: embedded_data
+  data_rows:
+    - user_id: 2
+      name: Organiser
+      password: organiser
+  ids:
+    user_id:
+      type: integer
+
+process:
+  uid: id
+  name: name
+  pass:
+    plugin: callback
+    callable: md5
+    source: password
+  status:
+    plugin: default_value
+    default_value: true
+  roles:
+    plugin: default_value
+    default_value: organiser
+
+destination:
+  plugin: entity:user
+  md5_passwords: true
