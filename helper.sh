@@ -4,7 +4,9 @@ OPERATION=$1
 shift
 ARGS=$*
 
-THEME_DIR="/var/www/html/web/themes/custom/phpsouthwales"
+PROJECT_ROOT="/var/www/html"
+DOCROOT="web"
+THEME_DIR="${PROJECT_ROOT}/${DOCROOT}/themes/custom/phpsouthwales"
 
 case $OPERATION in
   'config-export') ddev exec drupal config:export $ARGS;;
