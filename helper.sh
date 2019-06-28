@@ -32,6 +32,8 @@ case $OPERATION in
     ddev exec --dir $THEME_DIR yarn build
     ;;
 
+  'drush') ddev exec drush $ARGS;;
+
   # Defer anything else to ddev.
   *) ddev $ARGS;;
 esac
