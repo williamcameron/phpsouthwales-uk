@@ -1,4 +1,7 @@
 services:
+  Drupal\event_pull\Service\Importer\EventImporter:
+    autowire: true
+
   Drupal\event_pull\Service\EventLoader\MeetupEventLoader:
     autowire: true
 

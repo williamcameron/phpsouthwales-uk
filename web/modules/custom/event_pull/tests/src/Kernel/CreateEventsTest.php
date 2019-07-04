@@ -3,6 +3,7 @@
 namespace Drupal\Tests\event_pull\Kernel;
 
 use Drupal\event_pull\Model\Event;
+use Drupal\event_pull\Service\Importer\EventImporter;
 use Drupal\event_pull\Service\EventLoader\MeetupEventLoader;
 use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 use Drupal\node\NodeInterface;
@@ -77,19 +78,20 @@ class CreateEventsTest extends EntityKernelTestBase {
 
   /**
    * Test that event nodes are created from pulled events.
+   *
+   * @group event-import
+   * @group event-import-meetup
    */
   public function testEventNodesAreCreated() {
-    $this->markTestIncomplete();
-
-    /** @var \Drupal\event_pull\Service\EventLoader\MeetupEventLoader $meetupEventLoader */
-    $meetupEventLoader = $this->container->get(MeetupEventLoader::class);
-    $events = $meetupEventLoader->getUpcoming();
+    /** @var \Drupal\event_pull\Service\Importer\EventImporter $eventImporter */
+    $eventImporter = $this->container->get(EventImporter::class);
+    $events = $eventImporter->import();
 
     // Given that there is an event.
-    $this->assertInstanceOf(Collection::class, $events);
-    $this->assertCount(1, $events);
-    $event = $events->first();
-    $this->assertInstanceOf(Event::class, $event);
+    // $this->assertInstanceOf(Collection::class, $events);
+    // $this->assertCount(1, $events);
+    // $event = $events->first();
+    // $this->assertInstanceOf(Event::class, $event);
 
     // When I pull it in.
     // Then the item should be queued.
