@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cd5598ff823807722c9b68780db26753",
+    "content-hash": "bdd56075eba0d18bcd211368968efb0f",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3776,6 +3776,47 @@
                 "php"
             ],
             "time": "2019-05-25T20:07:01+00:00"
+        },
+        {
+            "name": "opdavies/php-helpers",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/opdavies/php-helpers.git",
+                "reference": "3b96de3da1e60dccaf32247bd0319fab4f4ac231"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/opdavies/php-helpers/zipball/3b96de3da1e60dccaf32247bd0319fab4f4ac231",
+                "reference": "3b96de3da1e60dccaf32247bd0319fab4f4ac231",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.15",
+                "phpunit/phpunit": "^7.5",
+                "symfony/var-dumper": "^4.3"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Davies",
+                    "email": "oliver@oliverdavies.uk"
+                }
+            ],
+            "description": "Helper functions for when working with PHP",
+            "time": "2019-06-29T12:18:14+00:00"
         },
         {
             "name": "paragonie/random_compat",
