@@ -4,6 +4,8 @@ namespace Drupal\Tests\event_pull\Kernel;
 
 use Drupal\advancedqueue\Entity\Queue;
 use Drupal\advancedqueue\Job;
+use Drupal\event_pull\Service\EventLoader\EventLoaderInterface;
+use Drupal\event_pull\Service\EventLoader\MeetupEventLoader;
 use Drupal\event_pull\Service\Importer\EventImporter;
 use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 use Drupal\node\NodeInterface;
@@ -51,7 +53,7 @@ class CreateEventsTest extends EntityKernelTestBase {
 
     $this->installSchema('advancedqueue', ['advancedqueue']);
 
-//    $this->container->setAlias(EventLoaderInterface::class, MeetupEventLoader::class);
+    $this->container->setAlias(EventLoaderInterface::class, MeetupEventLoader::class);
 
     $entityTypeManager = $this->container->get('entity_type.manager');
 
@@ -60,7 +62,7 @@ class CreateEventsTest extends EntityKernelTestBase {
 
     $mockData = [
       (object) [
-        'title' => 'Practical Static Analysis',
+        'name' => 'Practical Static Analysis',
         'status' => 'past',
         'time' => '1556643600000',
         'yes_rsvp_count' => 17,
@@ -99,8 +101,10 @@ class CreateEventsTest extends EntityKernelTestBase {
     $backend = $queue->getBackend();
     $jobs = $backend->countJobs();
     $this->assertEqual(1, $jobs[Job::STATE_QUEUED]);
-    return;
-//    $this->markTestIncomplete();
+
+    /** @var \Drupal\advancedqueue\ProcessorInterface $processor */
+    $processor = $this->container->get('advancedqueue.processor');
+    $processor->processQueue($queue);
 
     // When the queue is processed, the corresponding event node should be
     // created.

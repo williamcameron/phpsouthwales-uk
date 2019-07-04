@@ -20,7 +20,7 @@ class EventImporter {
   public function import(): void {
     $this->eventLoader->getUpcoming()
       ->each(function (Event $event): void {
-        $job = Job::create('event_pull_pulled_event', ['event' => $event]);
+        $job = Job::create('event_pull_pulled_event', ['event' => $event->toArray()]);
         $queue = Queue::load('default');
         $queue->enqueueJob($job);
       });
