@@ -2,6 +2,9 @@ services:
   Drupal\event_pull\Service\Importer\EventImporter:
     autowire: true
 
+  Drupal\event_pull\Service\EventLoader\EventLoaderInterface:
+    alias: Drupal\event_pull\Service\EventLoader\MeetupEventLoader
+
   Drupal\event_pull\Service\EventLoader\MeetupEventLoader:
     autowire: true
 
