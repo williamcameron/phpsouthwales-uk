@@ -15,6 +15,7 @@ case $OPERATION in
     fin drush migrate:import phpsw_users
     ./helper.sh build-theme
     fin exec drupal cache:rebuild
+    fin uli
     ;;
 
   'drupal-refresh')
