@@ -55,21 +55,38 @@ class CreateEventsTest extends EntityKernelTestBase {
   private $termStorage;
 
   /**
+   * The event importer service.
+   *
+   * @var \Drupal\event_pull\Service\Importer\EventImporter
+   */
+  private $eventImporter;
+
+  /**
+   * The queue.
+   *
+   * @var \Drupal\advancedqueue\Entity\Queue
+   */
+  private $queue;
+
+  /**
+   * The queue processor.
+   *
+   * @var \Drupal\advancedqueue\ProcessorInterface
+   */
+  private $processor;
+
+  /**
+   * The queue backend.
+   *
+   * @var \Drupal\advancedqueue\Plugin\AdvancedQueue\Backend\BackendInterface
+   */
+  private $backend;
+
+  /**
    * {@inheritdoc}
    */
   public function setUp() {
     parent::setUp();
-
-    $this->installConfig(self::$modules);
-
-    $this->installSchema('advancedqueue', ['advancedqueue']);
-
-    $this->container->setAlias(EventLoaderInterface::class, MeetupEventLoader::class);
-
-    $entityTypeManager = $this->container->get('entity_type.manager');
-
-    $this->nodeStorage = $entityTypeManager->getStorage('node');
-    $this->termStorage = $entityTypeManager->getStorage('taxonomy_term');
 
     $mockData = [
       (object) [
@@ -93,6 +110,22 @@ class CreateEventsTest extends EntityKernelTestBase {
       ],
     ];
     $this->mockHttpClient($mockData);
+
+    $this->installConfig(self::$modules);
+
+    $this->installSchema('advancedqueue', ['advancedqueue']);
+
+    $this->container->setAlias(EventLoaderInterface::class, MeetupEventLoader::class);
+
+    $entityTypeManager = $this->container->get('entity_type.manager');
+    $this->nodeStorage = $entityTypeManager->getStorage('node');
+    $this->termStorage = $entityTypeManager->getStorage('taxonomy_term');
+
+    $this->eventImporter = $this->container->get(EventImporter::class);
+    $this->queue = Queue::load('default');
+    $this->backend = $this->queue->getBackend();
+    $this->processor = $this->container->get('advancedqueue.processor');
+
   }
 
   /**
@@ -100,36 +133,22 @@ class CreateEventsTest extends EntityKernelTestBase {
    *
    * @group event-import
    * @group event-import-meetup
+   * @group event-import-meetup-event
    */
   public function testEventNodesAreCreated() {
-    /** @var \Drupal\event_pull\Service\Importer\EventImporter $eventImporter */
-    $eventImporter = $this->container->get(EventImporter::class);
-    $eventImporter->import();
+    $this->eventImporter->import();
 
-    // Then the item should be queued.
-    $queue = Queue::load('default');
-    /** @var \Drupal\advancedqueue\Plugin\AdvancedQueue\Backend\BackendBase $backend */
-    $backend = $queue->getBackend();
-    $jobs = $backend->countJobs();
+    $jobs = $this->backend->countJobs();
     $this->assertEqual(1, $jobs[Job::STATE_QUEUED]);
 
-    /** @var \Drupal\advancedqueue\ProcessorInterface $processor */
-    $processor = $this->container->get('advancedqueue.processor');
-    $processor->processQueue($queue);
+    $this->processor->processQueue($this->queue);
 
-    // When the queue is processed, the corresponding event node should be
-    // created.
     $events = collect($this->nodeStorage->loadMultiple());
     $this->assertSame(1, $events->count());
+
     $event = $events->first();
     $this->assertInstanceOf(NodeInterface::class, $event);
     $this->assertSame('Practical Static Analysis', $event->label());
-
-//    $this->markTestIncomplete();
-
-    // The taxonomy term for the venue should also be created.
-//    $venue = $this->termStorage->load(1);
-//    $this->assertInstanceOf(TermInterface::class, $venue);
   }
 
 }
