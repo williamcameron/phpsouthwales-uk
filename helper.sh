@@ -4,11 +4,10 @@ OPERATION=$1
 shift
 ARGS=$*
 
-PROJECT_ROOT="/var/www/html"
 DOCROOT="web"
-THEME_DIR="${PROJECT_ROOT}/${DOCROOT}/themes/custom/phpsouthwales"
+THEME_DIR="${DOCROOT}/themes/custom/phpsouthwales"
 
-case $OPERATION in
+case ${OPERATION} in
   'drupal-install')
     fin composer install
     fin drush site:install config_installer -y --account-name=admin --account-pass=admin123
@@ -28,7 +27,9 @@ case $OPERATION in
     ;;
 
   'build-theme')
-    # fin --dir $THEME_DIR yarn
-    # fin --dir $THEME_DIR yarn build
+    pushd ${THEME_DIR}
+    fin exec yarn
+    fin exec yarn build
+    popd
     ;;
 esac
