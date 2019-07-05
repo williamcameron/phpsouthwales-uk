@@ -151,4 +151,15 @@ class CreateEventsTest extends EntityKernelTestBase {
     $this->assertSame('Practical Static Analysis', $event->label());
   }
 
+  /**
+   * Test that event nodes are created from pulled events.
+   *
+   * @group event-import
+   * @group event-import-meetup
+   * @group event-import-meetup-venue
+   */
+  public function testEventVenueTermsAreCreated() {
+    $this->markTestIncomplete();
+  }
+
 }
