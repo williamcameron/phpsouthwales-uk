@@ -29,18 +29,34 @@ class PulledEvent extends JobTypeBase {
     try {
       $payload = $job->getPayload();
 
-      $node = Node::create([
-        'status' => NodeInterface::PUBLISHED,
-        'type' => 'event',
-        'title' => $payload['name'],
-      ]);
-      $node->save();
+      $event = $this->createNode($payload);
 
       return JobResult::success();
     }
     catch (EntityStorageException $e) {
       return JobResult::failure($e->getMessage());
     }
+  }
+
+  /**
+   * Create the event node.
+   *
+   * @param array $eventData
+   *   The event data.
+   *
+   * @return \Drupal\Core\Entity\EntityInterface|\Drupal\node\Entity\Node
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   */
+  private function createNode(array $eventData) {
+    $node = Node::create([
+      'status' => NodeInterface::PUBLISHED,
+      'type' => 'event',
+      'title' => $eventData['name'],
+    ]);
+
+    $node->save();
+
+    return $node;
   }
 
 }
