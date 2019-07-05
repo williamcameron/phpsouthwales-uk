@@ -5,6 +5,7 @@ namespace Drupal\event_pull\Plugin\AdvancedQueue\JobType;
 use Drupal\advancedqueue\Job;
 use Drupal\advancedqueue\JobResult;
 use Drupal\advancedqueue\Plugin\AdvancedQueue\JobType\JobTypeBase;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
@@ -44,19 +45,21 @@ class PulledEvent extends JobTypeBase {
    * @param array $eventData
    *   The event data.
    *
-   * @return \Drupal\Core\Entity\EntityInterface|\Drupal\node\Entity\Node
+   * @return \Drupal\Core\Entity\EntityInterface
+   *   The created node.
+   *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  private function createNode(array $eventData) {
-    $node = Node::create([
+  private function createNode(array $eventData): EntityInterface {
+    $values = [
       'status' => NodeInterface::PUBLISHED,
       'type' => 'event',
       'title' => $eventData['name'],
-    ]);
+    ];
 
-    $node->save();
-
-    return $node;
+    return tap(Node::create($values), function (NodeInterface $event): void {
+      $event->save();
+    });
   }
 
 }
