@@ -44,10 +44,17 @@ class Event {
     return (int) substr($this->eventData->time, 0, 10);
   }
 
+  /**
+   * Return the Event as an array.
+   *
+   * @return array
+   *   The Event array.
+   */
   public function toArray(): array {
     return [
       'name' => $this->getName(),
       'date' => $this->getDate(),
     ];
   }
+
 }

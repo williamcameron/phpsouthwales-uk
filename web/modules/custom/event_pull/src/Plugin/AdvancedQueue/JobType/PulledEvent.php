@@ -10,6 +10,10 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 
 /**
+ * A queue job type for pulled events.
+ *
+ * Creates event nodes for external events that have been pulled in.
+ *
  * @AdvancedQueueJobType(
  *   id = "event_pull_pulled_event",
  *   label = @Translation("Pulled event"),

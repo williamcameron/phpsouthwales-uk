@@ -9,7 +9,6 @@ use Drupal\event_pull\Service\EventLoader\MeetupEventLoader;
 use Drupal\event_pull\Service\Importer\EventImporter;
 use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 use Drupal\node\NodeInterface;
-use Drupal\taxonomy\TermInterface;
 use Drupal\Tests\event_pull\Traits\MockHttpClientTrait;
 
 /**

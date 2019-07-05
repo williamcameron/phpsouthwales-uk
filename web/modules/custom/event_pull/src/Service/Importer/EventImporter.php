@@ -7,16 +7,33 @@ use Drupal\advancedqueue\Job;
 use Drupal\event_pull\Model\Event;
 use Drupal\event_pull\Service\EventLoader\EventLoaderInterface;
 
+/**
+ * A service for importing events.
+ */
 class EventImporter {
 
+  /**
+   * The event loader service.
+   *
+   * @var \Drupal\event_pull\Service\EventLoader\EventLoaderInterface
+   */
   private $eventLoader;
 
+  /**
+   * EventImporter constructor.
+   *
+   * @param \Drupal\event_pull\Service\EventLoader\EventLoaderInterface $eventLoader
+   *   The event loader service.
+   */
   public function __construct(
       EventLoaderInterface $eventLoader
   ) {
     $this->eventLoader = $eventLoader;
   }
 
+  /**
+   * Import events.
+   */
   public function import(): void {
     $this->eventLoader->getUpcoming()
       ->each(function (Event $event): void {
