@@ -13,7 +13,7 @@ class MeetupEventLoader extends GuzzleEventLoader {
   public function getUrl(): string {
     return vsprintf('https://api.meetup.com/%s/events?status=%s', [
       env('MEETUP_GROUP_URL_NAME'),
-      env('MEETUP_EVENT_STATUSES', 'upcoming')
+      env('MEETUP_EVENT_STATUSES', 'upcoming'),
     ]);
   }
 

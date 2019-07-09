@@ -100,8 +100,8 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
   /**
    * Create an event term for the event.
    *
-   * @param array $eventData
-   *   The event data.
+   * @param \Drupal\event_pull\Model\Event $event
+   *   The event model.
    *
    * @return \Drupal\taxonomy\TermInterface
    *   The venue term.
@@ -129,8 +129,8 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
    *
    * @param \Drupal\taxonomy\TermInterface $venue
    *   The venue term.
-   * @param array $eventData
-   *   The event data.
+   * @param \Drupal\event_pull\Model\Event $event
+   *   The event model.
    *
    * @return \Drupal\Core\Entity\EntityInterface
    *   The created node.

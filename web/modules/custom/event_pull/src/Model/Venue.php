@@ -2,9 +2,14 @@
 
 namespace Drupal\event_pull\Model;
 
+/**
+ * A value object for venue data.
+ */
 class Venue {
 
   /**
+   * The original venue data.
+   *
    * @var \Tightenco\Collect\Support\Collection
    */
   private $data;
