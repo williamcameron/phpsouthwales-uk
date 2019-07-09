@@ -118,7 +118,7 @@ class CreateEventsTest extends EntityKernelTestBase {
     $this->termStorage = $entityTypeManager->getStorage('taxonomy_term');
 
     $this->eventImporter = $this->container->get(EventImporter::class);
-    $this->queue = Queue::load('default');
+    $this->queue = Queue::load('event_pull');
     $this->backend = $this->queue->getBackend();
     $this->processor = $this->container->get('advancedqueue.processor');
   }
