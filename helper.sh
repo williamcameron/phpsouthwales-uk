@@ -11,6 +11,7 @@ case ${OPERATION} in
   'drupal-install')
     fin composer install
     fin drush site:install config_installer -y --account-name=admin --account-pass=admin123
+    fin drush features:import:all -y
     fin drush migrate:import phpsw_users
     ./helper.sh build-theme
     fin exec drupal cache:rebuild
@@ -20,6 +21,7 @@ case ${OPERATION} in
   'drupal-refresh')
     fin composer install
     fin exec drupal cache:rebuild
+    fin drush features:import:all -y
     fin exec drupal config:import
     fin exec drupal update:execute
     ./helper.sh build-theme
