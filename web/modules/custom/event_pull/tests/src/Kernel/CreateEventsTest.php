@@ -9,6 +9,7 @@ use Drupal\event_pull\Service\EventLoader\MeetupEventLoader;
 use Drupal\event_pull\Service\Importer\EventImporter;
 use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 use Drupal\node\NodeInterface;
+use Drupal\taxonomy\TermInterface;
 use Drupal\Tests\event_pull\Traits\MockHttpClientTrait;
 
 /**
@@ -90,28 +91,17 @@ class CreateEventsTest extends EntityKernelTestBase {
     $mockData = [
       (object) [
         'name' => 'Practical Static Analysis',
-        'status' => 'past',
         'time' => '1556643600000',
-        'yes_rsvp_count' => 17,
         'venue' => [
-          'id' => 26204581,
           'name' => 'Stadium Plaza',
-          'lat' => 51.47688293457031,
-          'lon' => -3.181555986404419,
-          'repinned' => FALSE,
-          'address_1' => 'Wood St',
-          'city' => 'Cardiff',
-          'country' => 'gb',
-          'localized_country_name' => 'United Kingdom',
         ],
-        'link' => 'https://www.meetup.com/PHP-South-Wales/events/260287298/',
-        'description' => '<p>This month we have the pleasure of PHP South West organiser David Liddament coming this side of the bridge to give us an exciting talk all about Practical Static Analysis.</p>',
       ],
     ];
     $this->mockHttpClient($mockData);
 
     $this->installConfig(self::$modules);
 
+    $this->installEntitySchema('taxonomy_term');
     $this->installSchema('advancedqueue', ['advancedqueue']);
 
     $this->container->setAlias(EventLoaderInterface::class, MeetupEventLoader::class);
@@ -124,7 +114,6 @@ class CreateEventsTest extends EntityKernelTestBase {
     $this->queue = Queue::load('default');
     $this->backend = $this->queue->getBackend();
     $this->processor = $this->container->get('advancedqueue.processor');
-
   }
 
   /**
@@ -158,7 +147,27 @@ class CreateEventsTest extends EntityKernelTestBase {
    * @group event-import-meetup-venue
    */
   public function testEventVenueTermsAreCreated() {
-    $this->markTestIncomplete();
+    $this->eventImporter->import();
+
+    $jobs = $this->backend->countJobs();
+    $this->assertEqual(1, $jobs[Job::STATE_QUEUED]);
+
+    $this->processor->processQueue($this->queue);
+
+    $terms = collect($this->termStorage->loadMultiple());
+    /** @var \Drupal\taxonomy\TermInterface $venue */
+    $venue = $terms->first();
+    $this->assertInstanceOf(TermInterface::class, $venue);
+    $this->assertSame('Stadium Plaza', $venue->label());
+
+    $events = collect($this->nodeStorage->loadByProperties([
+      'type' => 'event',
+    ]));
+    $this->assertSame(1, $events->count());
+
+    $event = $events->first();
+    $this->assertInstanceOf(NodeInterface::class, $event);
+    $this->assertSame($venue->id(), $event->get('field_venue')->getString());
   }
 
 }
