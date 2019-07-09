@@ -51,10 +51,7 @@ class Event {
    *   The Event array.
    */
   public function toArray(): array {
-    return [
-      'name' => $this->getName(),
-      'date' => $this->getDate(),
-    ];
+    return (array) $this->eventData;
   }
 
 }
