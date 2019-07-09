@@ -96,6 +96,13 @@ class CreateEventsTest extends EntityKernelTestBase {
           'name' => 'Stadium Plaza',
         ],
       ],
+      (object) [
+        'name' => 'How to do more with PHPCS',
+        'time' => '1559237400000',
+        'venue' => [
+          'name' => 'Stadium Plaza',
+        ],
+      ],
     ];
     $this->mockHttpClient($mockData);
 
@@ -127,16 +134,20 @@ class CreateEventsTest extends EntityKernelTestBase {
     $this->eventImporter->import();
 
     $jobs = $this->backend->countJobs();
-    $this->assertEqual(1, $jobs[Job::STATE_QUEUED]);
+    $this->assertEqual(2, $jobs[Job::STATE_QUEUED]);
 
     $this->processor->processQueue($this->queue);
 
-    $events = collect($this->nodeStorage->loadMultiple());
-    $this->assertSame(1, $events->count());
+    $events = collect($this->nodeStorage->loadMultiple())->values();
+    $this->assertSame(2, $events->count());
 
-    $event = $events->first();
-    $this->assertInstanceOf(NodeInterface::class, $event);
-    $this->assertSame('Practical Static Analysis', $event->label());
+    tap($events->get(0), function (NodeInterface $event) {
+      $this->assertSame('How to do more with PHPCS', $event->label());
+    });
+
+    tap($events->get(1), function (NodeInterface $event) {
+      $this->assertSame('Practical Static Analysis', $event->label());
+    });
   }
 
   /**
@@ -148,13 +159,11 @@ class CreateEventsTest extends EntityKernelTestBase {
    */
   public function testEventVenueTermsAreCreated() {
     $this->eventImporter->import();
-
-    $jobs = $this->backend->countJobs();
-    $this->assertEqual(1, $jobs[Job::STATE_QUEUED]);
-
     $this->processor->processQueue($this->queue);
 
     $terms = collect($this->termStorage->loadMultiple());
+    $this->assertCount(1, $terms, 'There should be a single term per venue');
+
     /** @var \Drupal\taxonomy\TermInterface $venue */
     $venue = $terms->first();
     $this->assertInstanceOf(TermInterface::class, $venue);
@@ -162,12 +171,15 @@ class CreateEventsTest extends EntityKernelTestBase {
 
     $events = collect($this->nodeStorage->loadByProperties([
       'type' => 'event',
-    ]));
-    $this->assertSame(1, $events->count());
+    ]))->values();
 
-    $event = $events->first();
-    $this->assertInstanceOf(NodeInterface::class, $event);
-    $this->assertSame($venue->id(), $event->get('field_venue')->getString());
+    tap($events->get(0), function (NodeInterface $event) use ($venue): void {
+      $this->assertSame($venue->id(), $event->get('field_venue')->getString());
+    });
+
+    tap($events->get(1), function (NodeInterface $event) use ($venue): void {
+      $this->assertSame($venue->id(), $event->get('field_venue')->getString());
+    });
   }
 
 }

@@ -7,10 +7,13 @@ use Drupal\advancedqueue\JobResult;
 use Drupal\advancedqueue\Plugin\AdvancedQueue\JobType\JobTypeBase;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityStorageException;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * A queue job type for pulled events.
@@ -22,7 +25,57 @@ use Drupal\taxonomy\TermInterface;
  *   label = @Translation("Pulled event"),
  * )
  */
-class PulledEvent extends JobTypeBase {
+class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface {
+
+  /**
+   * The taxonomy term entity storage.
+   *
+   * @var \Drupal\Core\Entity\EntityStorageInterface
+   */
+  private $termStorage;
+
+  /**
+   * PulledEvent constructor.
+   *
+   * @param array $configuration
+   *   A configuration array containing information about the plugin instance.
+   * @param string $pluginId
+   *   The plugin_id for the plugin instance.
+   * @param mixed $pluginDefinition
+   *   The plugin implementation definition.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *   The entity type manager.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   */
+  public function __construct(
+    array $configuration,
+    string $pluginId,
+    $pluginDefinition,
+    EntityTypeManagerInterface $entityTypeManager
+  ) {
+    parent::__construct($configuration, $pluginId, $pluginDefinition);
+
+    $this->termStorage = $entityTypeManager->getStorage('taxonomy_term');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(
+    ContainerInterface $container,
+    array $configuration,
+    $pluginId,
+    $pluginDefinition
+  ) {
+    return new static(
+      $configuration,
+      $pluginId,
+      $pluginDefinition,
+      $container->get('entity_type.manager')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -32,7 +85,7 @@ class PulledEvent extends JobTypeBase {
     try {
       $payload = $job->getPayload();
 
-      $venue = $this->createVenue($payload);
+      $venue = $this->findOrCreateVenue($payload);
       $this->createNode($venue, $payload);
 
       return JobResult::success();
@@ -51,7 +104,14 @@ class PulledEvent extends JobTypeBase {
    * @return \Drupal\taxonomy\TermInterface
    *   The venue term.
    */
-  private function createVenue(array $eventData): TermInterface {
+  private function findOrCreateVenue(array $eventData): TermInterface {
+    $venueName = $eventData['venue']['name'];
+    $properties = ['name' => $venueName, 'vid' => 'venues'];
+
+    if ($terms = $this->termStorage->loadByProperties($properties)) {
+      return collect($terms)->first();
+    }
+
     $values = [
       'name' => $eventData['venue']['name'],
       'vid' => 'venues',
