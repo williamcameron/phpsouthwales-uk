@@ -9,6 +9,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\event_pull\Model\Event;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\taxonomy\Entity\Term;
@@ -83,10 +84,11 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
   public function process(Job $job) {
 
     try {
-      $payload = $job->getPayload();
+      $eventData = $job->getPayload();
+      $event = new Event((object) $eventData);
 
-      $venue = $this->findOrCreateVenue($payload);
-      $this->createNode($venue, $payload);
+      $venue = $this->findOrCreateVenue($event);
+      $this->createNode($venue, $event);
 
       return JobResult::success();
     }
@@ -104,8 +106,8 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
    * @return \Drupal\taxonomy\TermInterface
    *   The venue term.
    */
-  private function findOrCreateVenue(array $eventData): TermInterface {
-    $venueName = $eventData['venue']['name'];
+  private function findOrCreateVenue(Event $event): TermInterface {
+    $venueName = $event->getVenue()->getName();
     $properties = ['name' => $venueName, 'vid' => 'venues'];
 
     if ($terms = $this->termStorage->loadByProperties($properties)) {
@@ -113,7 +115,7 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
     }
 
     $values = [
-      'name' => $eventData['venue']['name'],
+      'name' => $event->getVenue()->getName(),
       'vid' => 'venues',
     ];
 
@@ -133,12 +135,12 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
    * @return \Drupal\Core\Entity\EntityInterface
    *   The created node.
    */
-  private function createNode(TermInterface $venue, array $eventData): EntityInterface {
+  private function createNode(TermInterface $venue, Event $event): EntityInterface {
     $values = [
       'field_venue' => $venue->id(),
       'status' => NodeInterface::PUBLISHED,
       'type' => 'event',
-      'title' => $eventData['name'],
+      'title' => $event->getName(),
     ];
 
     return tap(Node::create($values), function (NodeInterface $event): void {
