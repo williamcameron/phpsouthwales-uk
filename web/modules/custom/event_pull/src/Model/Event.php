@@ -74,4 +74,14 @@ class Event {
     return $this->eventData->id;
   }
 
+  /**
+   * Get the created date for the event.
+   *
+   * @return int
+   *   The created timestamp.
+   */
+  public function getCreatedDate(): int {
+    return (int) substr($this->eventData->created, 0, 10);
+  }
+
 }

@@ -25,6 +25,7 @@ class EventTest extends UnitTestCase {
 
     $data = new \stdClass();
     $data->name = 'How to do more with PHPCS';
+    $data->created = 1557234224000;
     $data->time = 1559237400000;
 
     $this->event = new Event($data);
@@ -42,6 +43,13 @@ class EventTest extends UnitTestCase {
    */
   public function testGetEventDate() {
     $this->assertSame(1559237400, $this->event->getDate());
+  }
+
+  /**
+   * Test retrieving the event created date.
+   */
+  public function testGetCreatedDate() {
+    $this->assertSame(1557234224, $this->event->getCreatedDate());
   }
 
 }

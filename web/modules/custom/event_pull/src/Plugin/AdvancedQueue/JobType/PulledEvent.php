@@ -153,6 +153,8 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
     }
 
     $values = [
+      'changed' => $event->getCreatedDate(),
+      'created' => $event->getCreatedDate(),
       'field_event_id' => $remoteId,
       'field_venue' => $venue->id(),
       'status' => NodeInterface::PUBLISHED,

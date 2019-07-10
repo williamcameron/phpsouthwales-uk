@@ -92,6 +92,7 @@ class CreateEventsTest extends EntityKernelTestBase {
       (object) [
         'name' => 'Practical Static Analysis',
         'id' => '260287298',
+        'created' => '1554234178000',
         'time' => '1556643600000',
         'venue' => [
           'name' => 'Stadium Plaza',
@@ -101,6 +102,7 @@ class CreateEventsTest extends EntityKernelTestBase {
       (object) [
         'name' => 'How to do more with PHPCS',
         'id' => '261255847',
+        'created' => '1557234224000',
         'time' => '1559237400000',
         'venue' => [
           'name' => 'Stadium Plaza',
