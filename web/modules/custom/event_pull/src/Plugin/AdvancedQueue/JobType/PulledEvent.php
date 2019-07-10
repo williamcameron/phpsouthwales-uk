@@ -29,6 +29,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface {
 
   /**
+   * The node entity storage.
+   *
+   * @var \Drupal\Core\Entity\EntityStorageInterface
+   */
+  private $nodeStorage;
+
+  /**
    * The taxonomy term entity storage.
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
@@ -58,6 +65,7 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
   ) {
     parent::__construct($configuration, $pluginId, $pluginDefinition);
 
+    $this->nodeStorage = $entityTypeManager->getStorage('node');
     $this->termStorage = $entityTypeManager->getStorage('taxonomy_term');
   }
 
@@ -88,7 +96,7 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
       $event = new Event((object) $eventData);
 
       $venue = $this->findOrCreateVenue($event);
-      $this->createNode($venue, $event);
+      $this->findOrCreateEvent($venue, $event);
 
       return JobResult::success();
     }
@@ -136,8 +144,16 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
    * @return \Drupal\Core\Entity\EntityInterface
    *   The created node.
    */
-  private function createNode(TermInterface $venue, Event $event): EntityInterface {
+  private function findOrCreateEvent(TermInterface $venue, Event $event): EntityInterface {
+    $remoteId = $event->getRemoteId();
+    $properties = ['field_event_id' => $remoteId, 'type' => 'event'];
+
+    if ($terms = $this->nodeStorage->loadByProperties($properties)) {
+      return collect($terms)->first();
+    }
+
     $values = [
+      'field_event_id' => $remoteId,
       'field_venue' => $venue->id(),
       'status' => NodeInterface::PUBLISHED,
       'type' => 'event',

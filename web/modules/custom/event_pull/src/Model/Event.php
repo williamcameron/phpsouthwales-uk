@@ -64,4 +64,14 @@ class Event {
     return (array) $this->eventData;
   }
 
+  /**
+   * Get the remote ID for the event.
+   *
+   * @return int
+   *   The remote ID.
+   */
+  public function getRemoteId(): int {
+    return $this->eventData->id;
+  }
+
 }

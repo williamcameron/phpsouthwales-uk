@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.event.body
+    - field.field.node.event.field_event_id
     - field.field.node.event.field_venue
     - node.type.event
   module:
@@ -28,6 +29,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_event_id:
+    weight: 123
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
   field_venue:
     weight: 122
     settings:

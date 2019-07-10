@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.event.body
+    - field.field.node.event.field_event_id
     - field.field.node.event.field_venue
     - node.type.event
   module:
@@ -19,6 +20,15 @@ content:
     weight: 101
     settings: {  }
     third_party_settings: {  }
+    region: content
+  field_event_id:
+    weight: 103
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
     region: content
   field_venue:
     weight: 102
