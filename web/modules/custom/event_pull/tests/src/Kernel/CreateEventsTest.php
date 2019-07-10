@@ -94,6 +94,7 @@ class CreateEventsTest extends EntityKernelTestBase {
         'time' => '1556643600000',
         'venue' => [
           'name' => 'Stadium Plaza',
+          'id' => '26204581',
         ],
       ],
       (object) [
@@ -101,6 +102,7 @@ class CreateEventsTest extends EntityKernelTestBase {
         'time' => '1559237400000',
         'venue' => [
           'name' => 'Stadium Plaza',
+          'id' => 26204581,
         ],
       ],
     ];

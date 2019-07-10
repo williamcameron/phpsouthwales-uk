@@ -34,4 +34,14 @@ class Venue {
     return $this->data->get('name');
   }
 
+  /**
+   * Get the remote ID for the venue.
+   *
+   * @return int
+   *   The remote ID.
+   */
+  public function getRemoteId(): int {
+    return $this->data->get('id');
+  }
+
 }

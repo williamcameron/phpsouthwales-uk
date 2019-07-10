@@ -107,14 +107,15 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
    *   The venue term.
    */
   private function findOrCreateVenue(Event $event): TermInterface {
-    $venueName = $event->getVenue()->getName();
-    $properties = ['name' => $venueName, 'vid' => 'venues'];
+    $remoteId = $event->getVenue()->getRemoteId();
+    $properties = ['field_venue_id' => $remoteId, 'vid' => 'venues'];
 
     if ($terms = $this->termStorage->loadByProperties($properties)) {
       return collect($terms)->first();
     }
 
     $values = [
+      'field_venue_id' => $event->getVenue()->getRemoteId(),
       'name' => $event->getVenue()->getName(),
       'vid' => 'venues',
     ];
