@@ -8,7 +8,6 @@ parameters:
     - *TestBase.php
   ignoreErrors:
     - '#Access to an undefined property object::\$.*#'
-    - '#Call to an undefined method Tightenco\\Collect\\Support\\HigherOrderCollectionProxy::.*#'
 includes:
   - vendor/mglaman/phpstan-drupal/extension.neon
   - vendor/phpstan/phpstan-deprecation-rules/rules.neon

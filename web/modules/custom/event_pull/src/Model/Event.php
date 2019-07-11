@@ -2,7 +2,6 @@
 
 namespace Drupal\event_pull\Model;
 
-use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 
 /**
@@ -47,7 +46,7 @@ class Event {
    */
   public function getEventDate(): string {
     return (new \DateTime())
-      ->setTimestamp(substr($this->eventData->time, 0, 10))
+      ->setTimestamp((int) substr($this->eventData->time, 0, 10))
       ->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT);
   }
 
