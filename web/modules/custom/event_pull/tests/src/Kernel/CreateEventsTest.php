@@ -93,6 +93,8 @@ class CreateEventsTest extends EntityKernelTestBase {
     $mockData = [
       (object) [
         'name' => 'Practical Static Analysis',
+        'link' => 'https://www.meetup.com/PHP-South-Wales/events/260287298/',
+        'description' => "<p>This month we have the pleasure of PHP South West organiser David Liddament coming this side of the bridge to give us an exciting talk all about Practical Static Analysis.</p>",
         'id' => '260287298',
         'created' => '1554234178000',
         'time' => '1556643600000',
@@ -103,6 +105,8 @@ class CreateEventsTest extends EntityKernelTestBase {
       ],
       (object) [
         'name' => 'How to do more with PHPCS',
+        'description' => "<p>This month with have Sarah Pantry from Automattic giving us a talk on PHPCS!</p>",
+        'link' => 'https://www.meetup.com/PHP-South-Wales/events/262811156/',
         'id' => '261255847',
         'created' => '1557234224000',
         'time' => '1559237400000',

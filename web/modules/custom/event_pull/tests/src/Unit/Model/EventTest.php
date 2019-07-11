@@ -46,7 +46,7 @@ class EventTest extends UnitTestCase {
    * Test retrieving the event date.
    */
   public function testGetEventDate() {
-    $this->assertSame(1559237400, $this->event->getDate());
+    $this->assertSame('2019-05-31T03:30:00', $this->event->getEventDate());
   }
 
   /**

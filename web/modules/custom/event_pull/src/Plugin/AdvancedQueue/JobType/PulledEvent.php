@@ -143,6 +143,8 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
    *
    * @return \Drupal\Core\Entity\EntityInterface
    *   The created node.
+   *
+   * @throws \Exception
    */
   private function findOrCreateEvent(TermInterface $venue, Event $event): EntityInterface {
     $remoteId = $event->getRemoteId();
@@ -155,11 +157,17 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
     $values = [
       'changed' => $event->getCreatedDate(),
       'created' => $event->getCreatedDate(),
+      'body' => [
+        'format' => 'basic_html',
+        'value' => $event->getDescription(),
+      ],
+      'field_event_date' => $event->getEventDate(),
       'field_event_id' => $remoteId,
+      'field_event_link' => $event->getRemoteUrl(),
       'field_venue' => $venue->id(),
       'status' => NodeInterface::PUBLISHED,
-      'type' => 'event',
       'title' => $event->getName(),
+      'type' => 'event',
     ];
 
     return tap(Node::create($values), function (NodeInterface $event): void {
