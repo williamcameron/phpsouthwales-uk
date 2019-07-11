@@ -2,6 +2,9 @@
 
 namespace Drupal\event_pull\Model;
 
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+
 /**
  * A value object for working with events returned from external sources.
  */
@@ -37,11 +40,15 @@ class Event {
   /**
    * Get the date of the event.
    *
-   * @return int
-   *   The event date timestamp.
+   * @return string
+   *   The formatted event date and time.
+   *
+   * @throws \Exception
    */
-  public function getDate(): int {
-    return (int) substr($this->eventData->time, 0, 10);
+  public function getEventDate(): string {
+    return (new \DateTime())
+      ->setTimestamp(substr($this->eventData->time, 0, 10))
+      ->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT);
   }
 
   /**
