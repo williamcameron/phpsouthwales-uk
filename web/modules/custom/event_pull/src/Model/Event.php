@@ -84,4 +84,24 @@ class Event {
     return (int) substr($this->eventData->created, 0, 10);
   }
 
+  /**
+   * Get the event's remote URL.
+   *
+   * @return string
+   *   The remote URL for the event (e.g. the URL on meetup.com).
+   */
+  public function getRemoteUrl(): string {
+    return $this->eventData->link;
+  }
+
+  /**
+   * Get the event description.
+   *
+   * @return string
+   *   The event description.
+   */
+  public function getDescription(): string {
+    return $this->eventData->description;
+  }
+
 }

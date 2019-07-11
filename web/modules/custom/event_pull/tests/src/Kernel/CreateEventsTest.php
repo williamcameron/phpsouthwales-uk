@@ -24,6 +24,8 @@ class CreateEventsTest extends EntityKernelTestBase {
    */
   public static $modules = [
     // Core.
+    'datetime',
+    'link',
     'node',
     'taxonomy',
 
