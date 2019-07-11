@@ -130,5 +130,5 @@ crons:
         spec: '*/20 * * * *'
         cmd: 'cd web ; drush core-cron'
     drush-event-cron:
-        spec: '*/5 * * * *'
+        spec: '*/7 * * * *'
         cmd: 'cd web; drush advancedqueue:queue:process event_pull'
