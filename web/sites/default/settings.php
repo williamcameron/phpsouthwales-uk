@@ -783,3 +783,7 @@ $config_directories['sync'] = '../config/sync';
 if (file_exists($app_root . '/' . $site_path . '/environments/settings.platformsh.php')) {
   include $app_root . '/' . $site_path . '/environments/settings.platformsh.php';
 }
+
+if (file_exists('/.dockerenv') && file_exists($app_root . '/' . $site_path . '/environments/settings.docksal.php')) {
+  include $app_root . '/' . $site_path . '/environments/settings.docksal.php';
+}

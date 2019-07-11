@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-* [DDEV](https://www.drud.com)
+* [Docksal](https://docksal.io)
 * [Docker](https://www.docker.com)
 * [Git](https://git-scm.com)
 
@@ -16,10 +16,10 @@
     cd php-south-wales
     ```
 
-1. Start DDEV.
+1. Start Docksal.
 
     ```
-    ddev start
+    fin start
     ```
 
 1. Install the website.
@@ -27,3 +27,5 @@
     ```
     ./helper.sh drupal-install
     ```
+
+1. Open <http://phpsouthwales.docksal> in a browser.
