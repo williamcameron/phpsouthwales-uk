@@ -63,6 +63,7 @@ hooks:
         ../vendor/bin/drush -y cache-rebuild
         ../vendor/bin/drush -y updatedb
         ../vendor/bin/drush -y config-import
+        ../vendor/bin/drush features:import:all -y
         ../vendor/bin/drush -y migrate:import --all
 
 # The configuration of app when it is exposed to the web.
