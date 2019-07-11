@@ -1,3 +1,4 @@
+uuid: adf9947d-4af4-4a3c-9277-68ed5049386b
 langcode: en
 status: true
 dependencies:
@@ -13,6 +14,8 @@ dependencies:
     - link
     - text
     - user
+_core:
+  default_config_hash: u6Zog2OaO72y6S9RKqbcx3h9GHbMU25bG7Um9-6SpNc
 id: node.event.default
 targetEntityType: node
 bundle: event

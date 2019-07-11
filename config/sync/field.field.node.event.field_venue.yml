@@ -1,3 +1,4 @@
+uuid: 40297261-a32c-49a1-b08e-d5e8a7292efc
 langcode: en
 status: true
 dependencies:
@@ -5,6 +6,8 @@ dependencies:
     - field.storage.node.field_venue
     - node.type.event
     - taxonomy.vocabulary.venues
+_core:
+  default_config_hash: vDLem97vGyVv1SrIspzk49sWULs_AFWhj0ZpwrtPPYM
 id: node.event.field_venue
 field_name: field_venue
 entity_type: node

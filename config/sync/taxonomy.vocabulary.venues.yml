@@ -1,0 +1,10 @@
+uuid: 078bfcef-740b-46f8-b8f6-a85e9267eac2
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: QP6xEyp6rz1l1FgHeAOZI5ofXyhwEl4mUg3vcxsL1ZI
+name: Venues
+vid: venues
+description: ''
+weight: 0
