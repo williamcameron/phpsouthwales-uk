@@ -45,13 +45,25 @@ build:
 # The hooks executed at various points in the lifecycle of the application.
 hooks:
     # The deploy hook runs after your application has been deployed and started.
+    build: |
+      cd web/themes/custom/phpsouthwales
+      unset NPM_CONFIG_PREFIX
+
+      curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | dash
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+      nvm current
+
+      npm install
+      npm run build
+      rm -fr node_modules
     deploy: |
         set -e
-        php ./drush/platformsh_generate_drush_yml.php
         cd web
-        drush -y cache-rebuild
-        drush -y updatedb
-        drush -y config-import
+        ../vendor/bin/drush -y cache-rebuild
+        ../vendor/bin/drush -y updatedb
+        ../vendor/bin/drush -y config-import
+        ../vendor/bin/drush -y migrate:import --all
 
 # The configuration of app when it is exposed to the web.
 web:
