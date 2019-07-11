@@ -148,8 +148,8 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
     $remoteId = $event->getRemoteId();
     $properties = ['field_event_id' => $remoteId, 'type' => 'event'];
 
-    if ($terms = $this->nodeStorage->loadByProperties($properties)) {
-      return collect($terms)->first();
+    if ($events = $this->nodeStorage->loadByProperties($properties)) {
+      return collect($events)->first();
     }
 
     $values = [
