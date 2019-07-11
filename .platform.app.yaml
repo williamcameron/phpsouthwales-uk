@@ -128,7 +128,7 @@ web:
 crons:
     drupal:
         spec: '*/20 * * * *'
-        cmd: 'cd web ; drush core-cron'
+        cmd: 'cd web ; ../vendor/bin/drush core-cron'
     drush-event-cron:
         spec: '*/7 * * * *'
-        cmd: 'cd web; drush advancedqueue:queue:process event_pull'
+        cmd: 'cd web; ../vendor/bin/drush advancedqueue:queue:process event_pull'
