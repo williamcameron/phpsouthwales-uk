@@ -779,7 +779,7 @@ $settings['entity_update_backup'] = TRUE;
 # }
 $config_directories['sync'] = '../config/sync';
 
-// Automatically generated include for settings managed by ddev.
-if (file_exists($app_root . '/' . $site_path . '/environments/settings.ddev.php')) {
-  include $app_root . '/' . $site_path . '/environments/settings.ddev.php';
+// Automatic Platform.sh settings.
+if (file_exists($app_root . '/' . $site_path . '/environments/settings.platformsh.php')) {
+  include $app_root . '/' . $site_path . '/environments/settings.platformsh.php';
 }
