@@ -1,0 +1,22 @@
+uuid: d8e2f2b4-5dff-4211-b251-d5f0d4aca53a
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+_core:
+  default_config_hash: 57MnzW4MNgPhBMjzCfB6feogiaYzKEnp-yA14Bsv8AE
+id: taxonomy_term.field_venue_id
+field_name: field_venue_id
+entity_type: taxonomy_term
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

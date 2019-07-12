@@ -1,0 +1,31 @@
+uuid: 40297261-a32c-49a1-b08e-d5e8a7292efc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_venue
+    - node.type.event
+    - taxonomy.vocabulary.venues
+_core:
+  default_config_hash: vDLem97vGyVv1SrIspzk49sWULs_AFWhj0ZpwrtPPYM
+id: node.event.field_venue
+field_name: field_venue
+entity_type: node
+bundle: event
+label: Venue
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      venues: venues
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

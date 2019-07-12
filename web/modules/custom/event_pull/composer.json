@@ -8,6 +8,10 @@
         }
     ],
     "require": {
+        "josephlavin/tap": "^1.0",
         "tightenco/collect": "^5.8"
+    },
+    "config": {
+        "sort-packages": true
     }
 }

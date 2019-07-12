@@ -1,0 +1,33 @@
+uuid: bf69b1aa-c7a8-4544-8204-5f739e688c0f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.venues.field_venue_id
+    - taxonomy.vocabulary.venues
+  module:
+    - text
+_core:
+  default_config_hash: Rm5XYeWS-w7ndGqN4JCGdVS-Tp26ZnmiE34QCfxwJkQ
+id: taxonomy_term.venues.default
+targetEntityType: taxonomy_term
+bundle: venues
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_venue_id:
+    weight: 1
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+hidden: {  }

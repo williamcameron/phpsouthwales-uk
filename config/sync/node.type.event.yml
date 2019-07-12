@@ -1,0 +1,19 @@
+uuid: caa7b41a-e57c-408e-b186-61f4643e78f8
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+_core:
+  default_config_hash: 6fbEtQO12jMq--tE2I0hkw_jwj9Yr7QT_BolgsF7kaw
+name: Event
+type: event
+description: 'An event organised by PHP South Wales.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

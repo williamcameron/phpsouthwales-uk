@@ -1,0 +1,25 @@
+uuid: 60b3bcda-64c9-463b-8f33-8d742db41a30
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_venue_id
+    - taxonomy.vocabulary.venues
+_core:
+  default_config_hash: RL8pxSskOmcdFnYM-tfuTkNhyjecMB_MVRga7kEuqDM
+id: taxonomy_term.venues.field_venue_id
+field_name: field_venue_id
+entity_type: taxonomy_term
+bundle: venues
+label: 'Venue ID'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -38,7 +38,9 @@ abstract class GuzzleEventLoader implements EventLoaderInterface {
 
     return collect(json_decode($events))->map(function (\stdClass $data) {
       return new Event($data);
-    })->sortByDesc->getDate();
+    })->sortByDesc(function (Event $event) {
+      return $event->getEventDate();
+    })->values();
   }
 
   /**
