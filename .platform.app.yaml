@@ -65,6 +65,8 @@ hooks:
         ../vendor/bin/drush -y config-import
         ../vendor/bin/drush features:import:all -y
         ../vendor/bin/drush -y migrate:import --all
+        ../vendor/bin/drush cron
+        ../vendor/bin/drush advancedqueue:queue:process event_pull
 
 # The configuration of app when it is exposed to the web.
 web:
