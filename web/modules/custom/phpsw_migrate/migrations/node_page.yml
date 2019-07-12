@@ -1,0 +1,25 @@
+id: phpsw_node_page
+
+source:
+  plugin: embedded_data
+  data_rows:
+    - id: 1
+      title: Code of Conduct
+      body: ~
+  ids:
+    id: { type: integer }
+  constants:
+    user_id: 1
+
+process:
+  body: body
+  title: title
+  uid: constants/user_id
+
+destination:
+  plugin: entity:node
+  default_bundle: page
+
+migration_dependencies:
+  required:
+    - phpsw_users
