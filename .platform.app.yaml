@@ -59,14 +59,16 @@ hooks:
       rm -fr node_modules
     deploy: |
         set -e
+        export PATH=$PATH:/app/vendor/bin
+
         cd web
-        ../vendor/bin/drush -y cache-rebuild
-        ../vendor/bin/drush -y updatedb
-        ../vendor/bin/drush -y config-import
-        ../vendor/bin/drush features:import:all -y
-        ../vendor/bin/drush -y migrate:import --all
-        ../vendor/bin/drush cron
-        ../vendor/bin/drush advancedqueue:queue:process event_pull
+        drush cache-rebuild -y
+        drush updatedb -y
+        drush config-import -y
+        drush features:import:all -y
+        drush migrate:import --all -y
+        drush cron
+        drush advancedqueue:queue:process event_pull
 
 # The configuration of app when it is exposed to the web.
 web:
