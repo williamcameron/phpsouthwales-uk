@@ -15,10 +15,21 @@ class EventRepository {
   ];
 
   /**
-   * @var \Drupal\Core\Entity\EntityStorageInterface|object
+   * The node entity storage.
+   *
+   * @var \Drupal\Core\Entity\EntityStorageInterface
    */
   private $nodeStorage;
 
+  /**
+   * EventRepository constructor.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeManager $entityTypeManager
+   *   The entity type manager service.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   */
   public function __construct(EntityTypeManager $entityTypeManager) {
     $this->nodeStorage = $entityTypeManager->getStorage('node');
   }
@@ -38,4 +49,5 @@ class EventRepository {
 
     return collect($this->nodeStorage->loadByProperties($this->properties));
   }
+
 }
