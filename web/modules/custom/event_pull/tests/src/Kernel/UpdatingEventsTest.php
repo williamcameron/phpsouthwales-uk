@@ -5,6 +5,7 @@ namespace Drupal\Tests\event_pull\Kernel;
 use Drupal\advancedqueue\Entity\Queue;
 use Drupal\event_pull\Service\EventLoader\EventLoaderInterface;
 use Drupal\event_pull\Service\Importer\EventImporter;
+use Drupal\event_pull\Service\Repository\EventRepository;
 use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 use Drupal\node\NodeInterface;
 use Drupal\Tests\event_pull\Traits\MockHttpClientTrait;
@@ -84,6 +85,12 @@ class UpdatingEventsTest extends EntityKernelTestBase {
   private $backend;
 
   /**
+   *
+   * @var \Drupal\event_pull\Service\Repository\EventRepository
+   */
+  private $eventRepository;
+
+  /**
    * {@inheritdoc}
    */
   public function setUp() {
@@ -114,6 +121,7 @@ class UpdatingEventsTest extends EntityKernelTestBase {
     $this->nodeStorage = $entityTypeManager->getStorage('node');
     $this->termStorage = $entityTypeManager->getStorage('taxonomy_term');
 
+    $this->eventRepository = $this->container->get(EventRepository::class);
     $this->eventImporter = $this->container->get(EventImporter::class);
     $this->queue = Queue::load('event_pull');
     $this->backend = $this->queue->getBackend();
@@ -133,7 +141,7 @@ class UpdatingEventsTest extends EntityKernelTestBase {
     $this->eventImporter->import();
     $this->processor->processQueue($this->queue);
 
-    $event = collect($this->nodeStorage->loadByProperties(['type' => 'event']))->values()->first();
+    $event = $this->eventRepository->getAll()->first();
     $this->assertInstanceOf(NodeInterface::class, $event);
     $this->assertSame('1', $event->id());
     $this->assertSame('1', $event->getRevisionId());
@@ -141,8 +149,7 @@ class UpdatingEventsTest extends EntityKernelTestBase {
     $this->eventImporter->import();
     $this->processor->processQueue($this->queue);
 
-    $events = collect($this->nodeStorage->loadByProperties(['type' => 'event']))->values();
-    $event = $events->first();
+    $event = $this->eventRepository->getAll()->first();
     $this->assertInstanceOf(NodeInterface::class, $event);
     $this->assertSame('1', $event->id());
     $this->assertSame('2', $event->getRevisionId());

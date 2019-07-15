@@ -10,6 +10,7 @@ use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\event_pull\Model\Event;
+use Drupal\event_pull\Service\Repository\EventRepository;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\taxonomy\Entity\Term;
@@ -43,6 +44,11 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
   private $termStorage;
 
   /**
+   * @var \Drupal\event_pull\Service\Repository\EventRepository
+   */
+  private $eventRepository;
+
+  /**
    * PulledEvent constructor.
    *
    * @param array $configuration
@@ -61,12 +67,14 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
     array $configuration,
     string $pluginId,
     $pluginDefinition,
-    EntityTypeManagerInterface $entityTypeManager
+    EntityTypeManagerInterface $entityTypeManager,
+    EventRepository $eventRepository
   ) {
     parent::__construct($configuration, $pluginId, $pluginDefinition);
 
     $this->nodeStorage = $entityTypeManager->getStorage('node');
     $this->termStorage = $entityTypeManager->getStorage('taxonomy_term');
+    $this->eventRepository = $eventRepository;
   }
 
   /**
@@ -82,7 +90,8 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
       $configuration,
       $pluginId,
       $pluginDefinition,
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
+      $container->get(EventRepository::class)
     );
   }
 
@@ -148,10 +157,10 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
    */
   private function findOrCreateEvent(TermInterface $venue, Event $event): EntityInterface {
     $remoteId = $event->getRemoteId();
-    $properties = ['field_event_id' => $remoteId, 'type' => 'event'];
+    $events = $this->eventRepository->findByRemoteId($remoteId);
 
-    if ($events = $this->nodeStorage->loadByProperties($properties)) {
-      $node = collect($events)->first();
+    if ($events->isNotEmpty()) {
+      $node = $events->first();
       return $this->updateEventNode($node, $event);
     }
 

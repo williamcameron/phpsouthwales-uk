@@ -8,3 +8,6 @@ services:
   Drupal\event_pull\Service\EventLoader\EventLoaderInterface:
     class: Drupal\event_pull\Service\EventLoader\MeetupEventLoader
     autowire: true
+
+  Drupal\event_pull\Service\Repository\EventRepository:
+    autowire: true
