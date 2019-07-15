@@ -117,7 +117,7 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
       $event = new Event((object) $eventData);
 
       $venue = $this->findOrCreateVenue($event);
-      $this->findOrCreateEvent($venue, $event);
+      $this->findOrCreateEvent($event, $venue);
 
       return JobResult::success();
     }
@@ -167,7 +167,7 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
    *
    * @throws \Exception
    */
-  private function findOrCreateEvent(TermInterface $venue, Event $event): EntityInterface {
+  private function findOrCreateEvent(Event $event, TermInterface $venue): EntityInterface {
     $remoteId = $event->getRemoteId();
     $events = $this->eventRepository->findByRemoteId($remoteId);
 
