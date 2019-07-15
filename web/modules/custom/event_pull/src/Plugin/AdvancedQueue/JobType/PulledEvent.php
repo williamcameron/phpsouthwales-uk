@@ -151,9 +151,29 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
     $properties = ['field_event_id' => $remoteId, 'type' => 'event'];
 
     if ($events = $this->nodeStorage->loadByProperties($properties)) {
-      return collect($events)->first();
+      $node = collect($events)->first();
+      return $this->updateEventNode($node, $event);
     }
 
+    return $this->createEventNode($event, $venue, $remoteId);
+  }
+
+  /**
+   * Create a new event node.
+   *
+   * @param \Drupal\event_pull\Model\Event $event
+   *   The event model.
+   * @param \Drupal\taxonomy\TermInterface $venue
+   *   The venue term.
+   * @param int $remoteId
+   *   The remote ID.
+   *
+   * @return \Drupal\node\NodeInterface
+   *   The new event node.
+   *
+   * @throws \Exception
+   */
+  private function createEventNode(Event $event, TermInterface $venue, int $remoteId): NodeInterface {
     $values = [
       'changed' => $event->getCreatedDate(),
       'created' => $event->getCreatedDate(),
@@ -172,6 +192,28 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
 
     return tap(Node::create($values), function (NodeInterface $event): void {
       $event->save();
+    });
+  }
+
+  /**
+   * Update an existing event node.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The event node.
+   * @param \Drupal\event_pull\Model\Event $event
+   *   The event model.
+   *
+   * @return \Drupal\node\NodeInterface
+   *   The updated node.
+   */
+  private function updateEventNode(NodeInterface $node, Event $event): NodeInterface {
+    return tap($node, function (NodeInterface $node) use ($event): void {
+      $node->setTitle($event->getName());
+      $node->set('body', $event->getDescription());
+      $node->set('field_event_date', $event->getEventDate());
+
+      $node->setNewRevision();
+      $node->save();
     });
   }
 

@@ -1,0 +1,3 @@
+services:
+  Drupal\event_pull\Service\EventLoader\EventLoaderInterface:
+    class: Drupal\event_pull_test\Service\Loader\FakeEventLoader
