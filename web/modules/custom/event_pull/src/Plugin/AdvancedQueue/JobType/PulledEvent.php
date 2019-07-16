@@ -9,9 +9,9 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\event_pull\Controller\EventController;
 use Drupal\event_pull\Model\Event;
-use Drupal\node\Entity\Node;
-use Drupal\node\NodeInterface;
+use Drupal\event_pull\Service\Repository\EventRepository;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -43,6 +43,18 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
   private $termStorage;
 
   /**
+   * @var \Drupal\event_pull\Service\Repository\EventRepository
+   */
+  private $eventRepository;
+
+  /**
+   * The event controller.
+   *
+   * @var \Drupal\event_pull\Controller\EventController
+   */
+  private $eventController;
+
+  /**
    * PulledEvent constructor.
    *
    * @param array $configuration
@@ -53,6 +65,10 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
    *   The plugin implementation definition.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    *   The entity type manager.
+   * @param \Drupal\event_pull\Service\Repository\EventRepository $eventRepository
+   *   The event repository.
+   * @param \Drupal\event_pull\Controller\EventController $eventController
+   *   The event controller.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
@@ -61,12 +77,16 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
     array $configuration,
     string $pluginId,
     $pluginDefinition,
-    EntityTypeManagerInterface $entityTypeManager
+    EntityTypeManagerInterface $entityTypeManager,
+    EventRepository $eventRepository,
+    EventController $eventController
   ) {
     parent::__construct($configuration, $pluginId, $pluginDefinition);
 
     $this->nodeStorage = $entityTypeManager->getStorage('node');
     $this->termStorage = $entityTypeManager->getStorage('taxonomy_term');
+    $this->eventController = $eventController;
+    $this->eventRepository = $eventRepository;
   }
 
   /**
@@ -82,7 +102,9 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
       $configuration,
       $pluginId,
       $pluginDefinition,
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
+      $container->get(EventRepository::class),
+      $container->get(EventController::class)
     );
   }
 
@@ -90,17 +112,16 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
    * {@inheritdoc}
    */
   public function process(Job $job) {
-
     try {
       $eventData = $job->getPayload();
       $event = new Event((object) $eventData);
 
       $venue = $this->findOrCreateVenue($event);
-      $this->findOrCreateEvent($venue, $event);
+      $this->findOrCreateEvent($event, $venue);
 
       return JobResult::success();
     }
-    catch (EntityStorageException $e) {
+    catch (\Exception $e) {
       return JobResult::failure($e->getMessage());
     }
   }
@@ -146,33 +167,15 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
    *
    * @throws \Exception
    */
-  private function findOrCreateEvent(TermInterface $venue, Event $event): EntityInterface {
+  private function findOrCreateEvent(Event $event, TermInterface $venue): EntityInterface {
     $remoteId = $event->getRemoteId();
-    $properties = ['field_event_id' => $remoteId, 'type' => 'event'];
+    $events = $this->eventRepository->findByRemoteId($remoteId);
 
-    if ($events = $this->nodeStorage->loadByProperties($properties)) {
-      return collect($events)->first();
+    if ($events->isEmpty()) {
+      return $this->eventController->create($event, $venue, $remoteId);
     }
 
-    $values = [
-      'changed' => $event->getCreatedDate(),
-      'created' => $event->getCreatedDate(),
-      'body' => [
-        'format' => 'basic_html',
-        'value' => $event->getDescription(),
-      ],
-      'field_event_date' => $event->getEventDate(),
-      'field_event_id' => $remoteId,
-      'field_event_link' => $event->getRemoteUrl(),
-      'field_venue' => $venue->id(),
-      'status' => NodeInterface::PUBLISHED,
-      'title' => $event->getName(),
-      'type' => 'event',
-    ];
-
-    return tap(Node::create($values), function (NodeInterface $event): void {
-      $event->save();
-    });
+    return $this->eventController->update($events->first(), $event);
   }
 
 }

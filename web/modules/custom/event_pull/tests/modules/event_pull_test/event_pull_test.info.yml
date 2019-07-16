@@ -1,0 +1,4 @@
+name: Event Pull Test
+type: module
+core: 7.x
+hidden: true

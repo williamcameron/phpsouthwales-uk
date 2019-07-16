@@ -3,7 +3,7 @@
 namespace Drupal\Tests\event_pull\Kernel\Service;
 
 use Drupal\event_pull\Model\Event;
-use Drupal\event_pull\Service\EventLoader\MeetupEventLoader;
+use Drupal\event_pull\Service\EventLoader\EventLoaderInterface;
 use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 use Drupal\Tests\event_pull\Traits\MockHttpClientTrait;
 use Tightenco\Collect\Support\Collection;
@@ -57,7 +57,7 @@ class EventLoaderTest extends EntityKernelTestBase {
    */
   public function testLoadingEvents() {
     /** @var \Drupal\event_pull\Service\EventLoader\MeetupEventLoader $meetupEventLoader */
-    $meetupEventLoader = $this->container->get(MeetupEventLoader::class);
+    $meetupEventLoader = $this->container->get(EventLoaderInterface::class);
     $events = $meetupEventLoader->getUpcoming();
 
     $this->assertInstanceOf(Collection::class, $events);
