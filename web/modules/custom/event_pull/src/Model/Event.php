@@ -61,16 +61,6 @@ class Event {
   }
 
   /**
-   * Return the Event as an array.
-   *
-   * @return array
-   *   The Event array.
-   */
-  public function toArray(): array {
-    return (array) $this->eventData;
-  }
-
-  /**
    * Get the remote ID for the event.
    *
    * @return int
@@ -108,6 +98,26 @@ class Event {
    */
   public function getDescription(): string {
     return $this->eventData->description;
+  }
+
+  /**
+   * Get the number of 'yes' RSVPs.
+   *
+   * @return int
+   *   The RSVP count.
+   */
+  public function getRsvpCount(): int {
+    return $this->eventData->yes_rsvp_count;
+  }
+
+  /**
+   * Return the Event as an array.
+   *
+   * @return array
+   *   The Event array.
+   */
+  public function toArray(): array {
+    return (array) $this->eventData;
   }
 
 }

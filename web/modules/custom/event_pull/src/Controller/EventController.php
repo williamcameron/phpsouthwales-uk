@@ -35,6 +35,7 @@ class EventController {
       'field_event_date' => $event->getEventDate(),
       'field_event_id' => $remoteId,
       'field_event_link' => $event->getRemoteUrl(),
+      'field_rsvp_count' => $event->getRsvpCount(),
       'field_venue' => $venue->id(),
       'status' => NodeInterface::PUBLISHED,
       'title' => $event->getName(),
@@ -60,8 +61,12 @@ class EventController {
   public function update(NodeInterface $node, Event $event): NodeInterface {
     return tap($node, function (NodeInterface $node) use ($event): void {
       $node->setTitle($event->getName());
-      $node->set('body', $event->getDescription());
+      $node->set('body', [
+        'format' => 'basic_html',
+        'value' => $event->getDescription(),
+      ]);
       $node->set('field_event_date', $event->getEventDate());
+      $node->set('field_rsvp_count', $event->getRsvpCount());
 
       $node->setNewRevision();
       $node->save();

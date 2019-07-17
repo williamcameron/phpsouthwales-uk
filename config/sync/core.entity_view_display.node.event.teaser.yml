@@ -5,14 +5,16 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.event.body
+    - field.field.node.event.field_event_date
     - field.field.node.event.field_event_id
+    - field.field.node.event.field_event_link
     - field.field.node.event.field_venue
     - node.type.event
   module:
     - text
     - user
 _core:
-  default_config_hash: Y-px2jI94ER_75v_aLiATOW6hsCHE1ly5Qkao_iUUoY
+  default_config_hash: ToIcU8NWqxK8cdVYXKomm06rcHDJCijBMdAXOaxKdps
 id: node.event.teaser
 targetEntityType: node
 bundle: event
@@ -32,5 +34,7 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  field_event_date: true
   field_event_id: true
+  field_event_link: true
   field_venue: true
