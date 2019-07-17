@@ -81,9 +81,9 @@
         "test-phpunit": "phpunit",
         "test-phpstan": "phpstan analyze",
         "test": [
-            "@test-phpunit",
+            "@test-phpcs",
             "@test-phpstan",
-            "@test-phpcs"
+            "@test-phpunit"
         ]
     },
     "extra": {
