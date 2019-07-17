@@ -61,7 +61,10 @@ class EventController {
   public function update(NodeInterface $node, Event $event): NodeInterface {
     return tap($node, function (NodeInterface $node) use ($event): void {
       $node->setTitle($event->getName());
-      $node->set('body', $event->getDescription());
+      $node->set('body', [
+        'format' => 'basic_html',
+        'value' => $event->getDescription(),
+      ]);
       $node->set('field_event_date', $event->getEventDate());
       $node->set('field_rsvp_count', $event->getRsvpCount());
 
