@@ -112,8 +112,7 @@ class CreateOrUpdateNodeForExternalEvent extends JobTypeBase implements Containe
    */
   public function process(Job $job) {
     try {
-      $eventData = $job->getPayload();
-      $event = new Event((object) $eventData);
+      $event = new Event((object) $job->getPayload());
 
       $venue = $this->findOrCreateVenue($event);
       $this->findOrCreateEvent($event, $venue);
