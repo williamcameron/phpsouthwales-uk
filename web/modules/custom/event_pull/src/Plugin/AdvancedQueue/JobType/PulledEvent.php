@@ -6,7 +6,6 @@ use Drupal\advancedqueue\Job;
 use Drupal\advancedqueue\JobResult;
 use Drupal\advancedqueue\Plugin\AdvancedQueue\JobType\JobTypeBase;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\EntityStorageException;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\event_pull\Controller\EventController;
@@ -157,10 +156,10 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
   /**
    * Create the event node.
    *
-   * @param \Drupal\taxonomy\TermInterface $venue
-   *   The venue term.
    * @param \Drupal\event_pull\Model\Event $event
    *   The event model.
+   * @param \Drupal\taxonomy\TermInterface $venue
+   *   The venue term.
    *
    * @return \Drupal\Core\Entity\EntityInterface
    *   The created node.
