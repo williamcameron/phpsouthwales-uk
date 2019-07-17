@@ -21,11 +21,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Creates event nodes for external events that have been pulled in.
  *
  * @AdvancedQueueJobType(
- *   id = "event_pull_pulled_event",
- *   label = @Translation("Pulled event"),
+ *   id = "event_pull_create_update_node",
+ *   label = @Translation("Create or update a node for an exernal event"),
  * )
  */
-class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface {
+class CreateOrUpdateNodeForExternalEvent extends JobTypeBase implements ContainerFactoryPluginInterface {
 
   /**
    * The node entity storage.
@@ -112,8 +112,7 @@ class PulledEvent extends JobTypeBase implements ContainerFactoryPluginInterface
    */
   public function process(Job $job) {
     try {
-      $eventData = $job->getPayload();
-      $event = new Event((object) $eventData);
+      $event = new Event((object) $job->getPayload());
 
       $venue = $this->findOrCreateVenue($event);
       $this->findOrCreateEvent($event, $venue);
