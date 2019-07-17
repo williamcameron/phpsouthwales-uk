@@ -23,6 +23,7 @@ class FakeEventLoader implements EventLoaderInterface {
       'name' => 'Stadium Plaza',
       'id' => '26204581',
     ];
+    $data->yes_rsvp_count = 123;
 
     return collect([
       new Event($data),

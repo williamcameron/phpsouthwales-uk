@@ -102,6 +102,7 @@ class CreateEventsTest extends EntityKernelTestBase {
           'name' => 'Stadium Plaza',
           'id' => '26204581',
         ],
+        'yes_rsvp_count' => 14,
       ],
       (object) [
         'name' => 'How to do more with PHPCS',
@@ -114,6 +115,7 @@ class CreateEventsTest extends EntityKernelTestBase {
           'name' => 'Stadium Plaza',
           'id' => 26204581,
         ],
+        'yes_rsvp_count' => 22,
       ],
     ];
     $this->mockHttpClient($mockData);
