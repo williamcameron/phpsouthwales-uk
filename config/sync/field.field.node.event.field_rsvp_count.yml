@@ -1,0 +1,23 @@
+uuid: a428ae01-54cc-4cee-8bd0-bf84af82679a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rsvp_count
+    - node.type.event
+id: node.event.field_rsvp_count
+field_name: field_rsvp_count
+entity_type: node
+bundle: event
+label: 'RSVP count'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

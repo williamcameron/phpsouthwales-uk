@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.event.field_event_date
     - field.field.node.event.field_event_id
     - field.field.node.event.field_event_link
+    - field.field.node.event.field_rsvp_count
     - field.field.node.event.field_venue
     - node.type.event
   module:
@@ -56,6 +57,13 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
+  field_rsvp_count:
+    weight: 26
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
     region: content
   field_venue:
     weight: 10
