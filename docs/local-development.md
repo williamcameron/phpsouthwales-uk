@@ -25,7 +25,7 @@
 1. Install the website.
 
     ```
-    ./helper.sh drupal-install
+    fin drupal-install
     ```
 
 1. Open <http://phpsouthwales.docksal> in a browser.
