@@ -31,6 +31,7 @@ class EventTest extends UnitTestCase {
     $data->time = 1559237400000;
     $data->link = 'https://www.meetup.com/PHP-South-Wales/events/261255847';
     $data->description = '<p>Some text about the event.</p>';
+    $data->yes_rsvp_count = 24;
 
     $this->event = new Event($data);
   }
@@ -80,6 +81,20 @@ class EventTest extends UnitTestCase {
    */
   public function testGetDescription() {
     $this->assertSame('<p>Some text about the event.</p>', $this->event->getDescription());
+  }
+
+  /**
+   * Test getting the event description.
+   *
+   * @group event-pull
+   * @group event-pull-model
+   * @group event-pull-model-event
+   *
+   * @covers ::getRsvpCount
+   */
+  public function testRsvpCount() {
+    $this->assertSame(24, $this->event->getRsvpCount());
+
   }
 
 }

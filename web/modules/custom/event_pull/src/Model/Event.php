@@ -110,4 +110,14 @@ class Event {
     return $this->eventData->description;
   }
 
+  /**
+   * Get the number of 'yes' RSVPs.
+   *
+   * @return int
+   *   The RSVP count.
+   */
+  public function getRsvpCount(): int {
+    return $this->eventData->yes_rsvp_count;
+  }
+
 }
