@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -e
+
+## Build the theme assets
+##
+## Usage: fin theme-build
+
+THEME_DIR="${DOCROOT}/themes/custom/phpsouthwales"
+
+pushd ${THEME_DIR}
+fin exec yarn
+fin exec yarn build
+popd
