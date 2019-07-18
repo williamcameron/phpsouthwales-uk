@@ -42,17 +42,6 @@ input {
   @apply border border-gray-500;
 }
 
-div[id^="block-"],
-.node {
-  @apply mb-4
-}
-
-.node-content p,
-.node-content ul,
-.node-content ol {
-  @apply mb-4 leading-normal
-}
-
 .markup a {
   @apply font-semibold text-red-900
 }

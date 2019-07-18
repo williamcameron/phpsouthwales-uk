@@ -669,18 +669,6 @@ input {
   border-color: #a0aec0;
 }
 
-div[id^="block-"],
-.node {
-  margin-bottom: 1rem
-}
-
-.node-content p,
-.node-content ul,
-.node-content ol {
-  margin-bottom: 1rem;
-  line-height: 1.5
-}
-
 .markup a {
   font-weight: 600;
   color: #742a2a
