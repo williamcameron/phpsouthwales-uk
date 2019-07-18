@@ -681,9 +681,15 @@ div[id^="block-"],
   line-height: 1.5
 }
 
-.site-logo img {
-  height: 8rem;
-  width: auto
+.markup a {
+  font-weight: 600;
+  color: #742a2a
+}
+
+.markup a:hover,
+.markup a:focus {
+  color: #c53030;
+  text-decoration: underline
 }
 
 /**
@@ -7749,6 +7755,29 @@ div[id^="block-"],
  * @import "utilities/background-patterns";
  * @import "utilities/skew-transforms";
  */
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border-width: 0 !important;
+}
+
+.not-sr-only {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+}
 
 @media (min-width: 640px) {
   .sm\:appearance-none {
@@ -35917,3 +35946,5 @@ div[id^="block-"],
     z-index: auto !important;
   }
 }
+
+/*# sourceMappingURL=tailwind.css.map*/
