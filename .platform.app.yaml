@@ -67,8 +67,9 @@ hooks:
         drush config-import -y
         drush features:import:all -y
         drush migrate:import --all -y
-        drush cron
+        drush eval 'event_pull_cron()'
         drush advancedqueue:queue:process event_pull
+        drush cache-rebuild -y
 
 # The configuration of app when it is exposed to the web.
 web:
