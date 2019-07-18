@@ -10,5 +10,5 @@ THEME_DIR="${DOCROOT}/themes/custom/phpsouthwales"
 
 pushd ${THEME_DIR}
 fin exec yarn
-fin exec yarn build
+fin exec yarn prod
 popd
