@@ -1,0 +1,32 @@
+id: phpsw_blocks
+
+source:
+  plugin: embedded_data
+  data_rows:
+    - id: 1
+      title: About us
+      description: |
+        <p>PHP South Wales is the local PHP user group for those living in the South Wales region of the United Kingdom. We generally talk about all things PHP and related technologies. Anybody is welcome, no matter on skill level or technologies used.</p>
+        <p>Want to get involved? Simply join our slack channel for the latest information, or help.
+        <a href="https://bit.ly/2HUXUvs">Join us on Slack</a></p>
+    - id: 2
+      title: Footer
+      description: |
+        <p>PHP South Wales, organised and maintained by <a href="https://github.com/JustSteveKing">Steve McDougall</a> and <a href="https://github.com/amymcdougall">Amy McDougall</a></p>
+
+  ids:
+    id: { type: integer }
+
+process:
+  id: id
+  body/0/value: description
+  body/0/format:
+    plugin: default_value
+    default_value: basic_html
+  type:
+    plugin: default_value
+    default_value: basic
+  info: title
+
+destination:
+  plugin: entity:block_content
