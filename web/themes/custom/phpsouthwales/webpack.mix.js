@@ -22,6 +22,7 @@ require('laravel-mix-purgecss')
 mix.purgeCss({
   folders: ['templates'],
   extensions: ['html', 'php', 'twig'],
-  whitelistPatterns: [/h[1-6]/, /p/, /[dou]l/],
-  whitelistPatternsChildren: []
+  whitelist: ['p'],
+  whitelistPatterns: [/^h[1-6]$/, /^[dou]l$/],
+  whitelistPatternsChildren: [/^markup$/],
 })
