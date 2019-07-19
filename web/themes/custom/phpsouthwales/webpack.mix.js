@@ -1,8 +1,10 @@
 let mix = require('laravel-mix');
 
 mix.postCss('src/tailwind.css', 'dist', [
-  require('tailwindcss')('./tailwind.config.js'),
+  require('tailwindcss'),
 ])
+
+mix.sourceMaps(!mix.inProduction(), 'source-map')
 
 /**
  * Uncomment the following lines to enable PurgeCSS.
