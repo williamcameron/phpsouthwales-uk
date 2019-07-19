@@ -9,7 +9,7 @@ _core:
 id: phpsouthwales_local_actions
 theme: phpsouthwales
 region: content
-weight: -20
+weight: -1
 provider: null
 plugin: local_actions_block
 settings:

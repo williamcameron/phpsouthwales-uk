@@ -29,6 +29,7 @@
         "drupal/core": "^8.7.0",
         "drupal/features": "^3.8",
         "drupal/migrate_tools": "^4.1",
+        "drupal/recreate_block_content": "^2.0",
         "drupal/tailwindcss": "^2.2",
         "drush/drush": "^9.0.0",
         "opdavies/php-helpers": "^0.2.0",

@@ -1,0 +1,31 @@
+uuid: 02ee0101-fde9-4583-a853-0fd993a4565f
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:6086f3b2-88a8-4d1f-95f5-e4000986e5e7'
+  module:
+    - block_content
+    - system
+  theme:
+    - phpsouthwales
+id: aboutus
+theme: phpsouthwales
+region: content
+weight: -5
+provider: null
+plugin: 'block_content:6086f3b2-88a8-4d1f-95f5-e4000986e5e7'
+settings:
+  id: 'block_content:6086f3b2-88a8-4d1f-95f5-e4000986e5e7'
+  label: 'About us'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }
