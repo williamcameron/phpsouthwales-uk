@@ -54,9 +54,9 @@ hooks:
       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
       nvm current
 
-      npm install
-      npm run build
-      rm -fr node_modules
+      # npm install
+      # npm run build
+      # rm -fr node_modules
     deploy: |
       set -e
       export PATH=$PATH:/app/vendor/bin
