@@ -12,5 +12,7 @@
     "cross-env": "^5.2.0",
     "laravel-mix": "^2.1.14",
     "tailwindcss": "^1.0.1"
+    "tailwindcss": "^1.0.1",
+    "tailwindcss-spaced-items": "^0.1.0"
   }
 }
