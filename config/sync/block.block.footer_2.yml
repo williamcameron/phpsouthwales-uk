@@ -1,0 +1,25 @@
+uuid: 83ffdacd-c41d-421e-ac1a-cc19d2c7a018
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:95c67b14-ed7c-4e4b-95c1-dc20bc78fb0c'
+  module:
+    - block_content
+  theme:
+    - phpsouthwales
+id: footer_2
+theme: phpsouthwales
+region: footer
+weight: 0
+provider: null
+plugin: 'block_content:95c67b14-ed7c-4e4b-95c1-dc20bc78fb0c'
+settings:
+  id: 'block_content:95c67b14-ed7c-4e4b-95c1-dc20bc78fb0c'
+  label: Footer
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

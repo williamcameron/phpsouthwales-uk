@@ -1,3 +1,5 @@
+const { spacing } = require('tailwindcss/defaultTheme')
+
 module.exports = {
   prefix: '',
   important: true,
@@ -5,5 +7,7 @@ module.exports = {
     extend: {},
   },
   variants: {},
-  plugins: []
+  plugins: [
+    require('tailwindcss-spaced-items')({ values: spacing })
+  ]
 }

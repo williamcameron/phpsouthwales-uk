@@ -54,21 +54,22 @@ hooks:
       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
       nvm current
 
-      npm install
-      npm run build
-      rm -fr node_modules
+      # npm install
+      # npm run build
+      # rm -fr node_modules
     deploy: |
-        set -e
-        export PATH=$PATH:/app/vendor/bin
+      set -e
+      export PATH=$PATH:/app/vendor/bin
 
-        cd web
-        drush cache-rebuild -y
-        drush updatedb -y
-        drush config-import -y
-        drush features:import:all -y
-        drush migrate:import --all -y
-        drush cron
-        drush advancedqueue:queue:process event_pull
+      cd web
+      drush cache-rebuild -y
+      drush updatedb -y
+      drush config-import -y
+      drush features:import:all -y
+      drush migrate:import --all -y
+      drush eval 'event_pull_cron()'
+      drush advancedqueue:queue:process event_pull
+      drush cache-rebuild -y
 
 # The configuration of app when it is exposed to the web.
 web:

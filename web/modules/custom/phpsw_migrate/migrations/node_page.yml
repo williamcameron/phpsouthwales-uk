@@ -6,6 +6,9 @@ source:
     - id: 1
       title: Code of Conduct
       body: ~
+    - id: 2
+      title: Home
+      body: ~
   ids:
     id: { type: integer }
   constants:
