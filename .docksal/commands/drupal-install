@@ -13,14 +13,28 @@ set -e
 ## - Generates theme assets
 ## - Rebuilds the Drupal theme
 
+DB_PATH=".docksal/db"
+DB_NAME="drupal"
+
 function site_pre_install() {
   fin composer install
 }
 
 function site_install() {
-  fin drush site:install config_installer -y \
-    --account-name=admin \
-    --account-pass=admin123
+  # If there is an exported database, import it.
+  # Otherwise, install the site via Drush and run the post-install steps.
+  if [ -f "${DB_PATH}/${DB_NAME}" ]; then
+    zcat < "${DB_PATH}/${DB_NAME}" | fin db import
+
+    fin exec drupal cache:rebuild
+  else
+    fin drush site:install config_installer -y \
+      --account-name=admin \
+      --account-pass=admin123
+
+    site_post_install
+    export_database
+  fi
 }
 
 function site_post_install() {
@@ -31,12 +45,17 @@ function site_post_install() {
   fin exec drupal cache:rebuild
 }
 
+function export_database() {
+  mkdir -p $DB_PATH
+
+  fin db dump | gzip > "${DB_PATH}/${DB_NAME}"
+}
+
 function import_events() {
-  fin drush eval 'event_pull_cron()'
+  fin drush php:eval 'event_pull_cron()'
   fin drush advancedqueue:queue:process event_pull
 }
 
 site_pre_install
 site_install
-site_post_install
 fin uli
