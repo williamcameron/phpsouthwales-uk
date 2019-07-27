@@ -4,7 +4,7 @@
 /node_modules/
 
 # Ignore compiled assets.
-# /dist/
+/dist/
 
 # Ignore lock files.
 /package-lock.json
