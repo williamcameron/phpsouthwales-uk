@@ -46,17 +46,17 @@ build:
 hooks:
     # The deploy hook runs after your application has been deployed and started.
     build: |
-      cd web/themes/custom/phpsouthwales
       unset NPM_CONFIG_PREFIX
-
       curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | dash
       export NVM_DIR="$HOME/.nvm"
       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
       nvm current
+      nvm install 8.6
 
-      # npm install
-      # npm run build
-      # rm -fr node_modules
+      cd web/themes/custom/phpsouthwales
+      npm install
+      npm run production
+      rm -fr node_modules
     deploy: |
       set -e
       export PATH=$PATH:/app/vendor/bin
