@@ -4231,18 +4231,18 @@
             "authors": [
                 {
                     "name": "Greg Beaver",
-                    "email": "cellog@php.net",
-                    "role": "Helper"
+                    "role": "Helper",
+                    "email": "cellog@php.net"
                 },
                 {
                     "name": "Andrei Zmievski",
-                    "email": "andrei@php.net",
-                    "role": "Lead"
+                    "role": "Lead",
+                    "email": "andrei@php.net"
                 },
                 {
                     "name": "Stig Bakken",
-                    "email": "stig@php.net",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "stig@php.net"
                 }
             ],
             "description": "More info available on: http://pear.php.net/package/Console_Getopt",
@@ -7815,16 +7815,16 @@
         },
         {
             "name": "mglaman/phpstan-drupal",
-            "version": "0.11.9",
+            "version": "0.11.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mglaman/phpstan-drupal.git",
-                "reference": "c599d447768e12f8088aa18167f5efc7bc1c2743"
+                "reference": "decb05ddd5b3f82481db8911ba78b17563a41460"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mglaman/phpstan-drupal/zipball/c599d447768e12f8088aa18167f5efc7bc1c2743",
-                "reference": "c599d447768e12f8088aa18167f5efc7bc1c2743",
+                "url": "https://api.github.com/repos/mglaman/phpstan-drupal/zipball/decb05ddd5b3f82481db8911ba78b17563a41460",
+                "reference": "decb05ddd5b3f82481db8911ba78b17563a41460",
                 "shasum": ""
             },
             "require": {
@@ -7846,8 +7846,11 @@
             "suggest": {
                 "phpstan/phpstan-deprecation-rules": "For catching deprecations, especially in Drupal core."
             },
-            "type": "library",
+            "type": "phpstan-extension",
             "extra": {
+                "branch-alias": {
+                    "dev-master": "0.12-dev"
+                },
                 "installer-paths": {
                     "tests/fixtures/drupal/core": [
                         "type:drupal-core"
@@ -7865,8 +7868,10 @@
                         "type:drupal-theme"
                     ]
                 },
-                "branch-alias": {
-                    "dev-master": "0.12-dev"
+                "phpstan": {
+                    "includes": [
+                        "extension.neon"
+                    ]
                 }
             },
             "autoload": {
@@ -7885,7 +7890,7 @@
                 }
             ],
             "description": "Drupal extension and rules for PHPStan",
-            "time": "2019-06-13T17:48:37+00:00"
+            "time": "2019-07-09T18:58:39+00:00"
         },
         {
             "name": "mikey179/vfsstream",
