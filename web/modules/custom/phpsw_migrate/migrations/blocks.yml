@@ -13,6 +13,10 @@ source:
       title: Footer
       description: |
         <p>PHP South Wales, organised and maintained by <a href="https://github.com/JustSteveKing">Steve McDougall</a> and <a href="https://github.com/amymcdougall">Amy McDougall</a></p>
+    - id: 3
+      title: Platform.sh
+      description: |
+        <p>Hosting sponsored by the <a href="http://platform.sh/?medium=referral&utm_campaign=sponsored_sites&utm_source=phpsouthwales">Platform.sh PHP cloud hosting</a> service.</a>
 
   ids:
     id: { type: integer }
