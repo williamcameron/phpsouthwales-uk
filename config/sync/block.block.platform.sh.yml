@@ -1,0 +1,25 @@
+uuid: 4ca78b24-2ef5-4f5b-9b3e-caca8afb002b
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:55f3b096-c9f6-41bc-8771-4bce07c6d3b5'
+  module:
+    - block_content
+  theme:
+    - phpsouthwales
+id: platform.sh
+theme: phpsouthwales
+region: footer
+weight: 0
+provider: null
+plugin: 'block_content:55f3b096-c9f6-41bc-8771-4bce07c6d3b5'
+settings:
+  id: 'block_content:55f3b096-c9f6-41bc-8771-4bce07c6d3b5'
+  label: Platform.sh
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
