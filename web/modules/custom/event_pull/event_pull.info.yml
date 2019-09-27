@@ -5,3 +5,4 @@ type: module
 package: Custom
 dependencies:
   - advancedqueue:advancedqueue
+  - hook_event_dispatcher:hook_event_dispatcher

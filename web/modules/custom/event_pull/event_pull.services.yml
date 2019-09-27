@@ -1,6 +1,11 @@
 services:
   Drupal\event_pull\Controller\EventController: ~
 
+  Drupal\event_pull\EventSubscriber\ImportEvents:
+    autowire: true
+    tags:
+      - { name: event_subscriber }
+
   Drupal\event_pull\Service\Importer\EventImporter:
     autowire: true
 
