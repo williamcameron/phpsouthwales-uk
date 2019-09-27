@@ -52,7 +52,7 @@ function export_database() {
 }
 
 function import_events() {
-  fin drush php:eval 'event_pull_cron()'
+  fin drush core:cron
   fin drush advancedqueue:queue:process event_pull
 }
 

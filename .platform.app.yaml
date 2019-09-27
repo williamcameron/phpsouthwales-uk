@@ -67,7 +67,7 @@ hooks:
       drush config-import -y
       drush features:import:all -y
       drush migrate:import --all -y
-      drush eval 'event_pull_cron()'
+      drush cron
       drush advancedqueue:queue:process event_pull
       drush cache-rebuild -y
 
