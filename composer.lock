@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9add6b5f19b9628111625da3ee44188e",
+    "content-hash": "6f054753e99a79287614ffd15e615a83",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3000,6 +3000,108 @@
             }
         },
         {
+            "name": "drupal/hook_event_dispatcher",
+            "version": "1.25.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/hook_event_dispatcher.git",
+                "reference": "8.x-1.25"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/hook_event_dispatcher-8.x-1.25.zip",
+                "reference": "8.x-1.25",
+                "shasum": "c5373f1c6537f542328281d5f37e2f6ff51e707a"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "require-dev": {
+                "drupal/coder": "^8.3.1",
+                "drupal/core": "^8.7",
+                "drupal/webform": "*",
+                "jakub-onderka/php-console-highlighter": "^0.4.0",
+                "jakub-onderka/php-parallel-lint": "^1.0",
+                "phpmd/phpmd": "^2.6",
+                "phpunit/phpunit": "^5.7 || ^6.5",
+                "squizlabs/php_codesniffer": "^3.4"
+            },
+            "suggest": {
+                "drupal/paragraphs": "Enables the creation of paragraphs entities.",
+                "drupal/token": "Provides additional tokens not supported by core (most notably fields), as well as a UI for browsing tokens."
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.25",
+                    "datestamp": "1560602285",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Drupal\\hook_event_dispatcher\\": "src/",
+                    "Drupal\\webform_event_dispatcher\\": "modules/webform_event_dispatcher/src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Drupal\\Tests\\hook_event_dispatcher\\": "tests/src/",
+                    "Drupal\\Tests\\webform_event_dispatcher\\": "modules/webform_event_dispatcher/tests/src/",
+                    "Drupal\\Tests\\": "vendor/drupal/core/tests/Drupal/Tests",
+                    "Drupal\\views\\": "vendor/drupal/core/modules/views/src/"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "scripts": {
+                "test": [
+                    "@phplint",
+                    "@phpunit",
+                    "@phpcs",
+                    "@phpmd"
+                ],
+                "phplint": [
+                    "vendor/bin/parallel-lint --exclude vendor/ --exclude .idea/ -e php,module,inc,install,profile,theme ."
+                ],
+                "phpunit": [
+                    "vendor/bin/phpunit --configuration=phpunit.xml"
+                ],
+                "phpcs": [
+                    "vendor/bin/phpcs --ignore=vendor/,.idea/ --standard=vendor/drupal/coder/coder_sniffer/Drupal/ruleset.xml --extensions=php,module,inc,install,profile,theme --report=full --warning-severity=0 ."
+                ],
+                "phpcbf": [
+                    "vendor/bin/phpcbf --ignore=vendor/,.idea/ --standard=vendor/drupal/coder/coder_sniffer/Drupal/ruleset.xml --extensions=php,module,inc,install,profile,theme ."
+                ],
+                "phpmd": [
+                    "vendor/bin/phpmd --exclude vendor/,.idea/ --suffixes php,module,inc,install,profile,theme . text phpmd.xml"
+                ]
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "pdenooijer",
+                    "homepage": "https://www.drupal.org/user/3175437"
+                },
+                {
+                    "name": "robin.ingelbrecht",
+                    "homepage": "https://www.drupal.org/user/2339074"
+                }
+            ],
+            "description": "Dispatches events for several drupal core hooks.",
+            "homepage": "https://www.drupal.org/project/hook_event_dispatcher",
+            "support": {
+                "source": "https://git.drupalcode.org/project/hook_event_dispatcher"
+            }
+        },
+        {
             "name": "drupal/migrate_plus",
             "version": "4.2.0",
             "source": {
@@ -3419,14 +3521,14 @@
             "authors": [
                 {
                     "name": "Nicholas Humfrey",
-                    "role": "Developer",
                     "email": "njh@aelius.com",
-                    "homepage": "http://www.aelius.com/njh/"
+                    "homepage": "http://www.aelius.com/njh/",
+                    "role": "Developer"
                 },
                 {
                     "name": "Alexey Zakhlestin",
-                    "role": "Developer",
-                    "email": "indeyets@gmail.com"
+                    "email": "indeyets@gmail.com",
+                    "role": "Developer"
                 }
             ],
             "description": "EasyRdf is a PHP library designed to make it easy to consume and produce RDF.",
@@ -3869,6 +3971,45 @@
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
+            "name": "josephlavin/tap",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/josephlavin/tap.git",
+                "reference": "8733d96fb9b7d7dca204dfe59ec3ff34f3c69be9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/josephlavin/tap/zipball/8733d96fb9b7d7dca204dfe59ec3ff34f3c69be9",
+                "reference": "8733d96fb9b7d7dca204dfe59ec3ff34f3c69be9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/tap.php",
+                    "src/TapProxy.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Stand alone port of Laravel's tap method.",
+            "keywords": [
+                "laravel",
+                "php",
+                "tap"
+            ],
+            "time": "2017-09-24T23:36:28+00:00"
+        },
+        {
             "name": "league/container",
             "version": "2.4.1",
             "source": {
@@ -4233,18 +4374,18 @@
             "authors": [
                 {
                     "name": "Greg Beaver",
-                    "role": "Helper",
-                    "email": "cellog@php.net"
+                    "email": "cellog@php.net",
+                    "role": "Helper"
                 },
                 {
                     "name": "Andrei Zmievski",
-                    "role": "Lead",
-                    "email": "andrei@php.net"
+                    "email": "andrei@php.net",
+                    "role": "Lead"
                 },
                 {
                     "name": "Stig Bakken",
-                    "role": "Developer",
-                    "email": "stig@php.net"
+                    "email": "stig@php.net",
+                    "role": "Developer"
                 }
             ],
             "description": "More info available on: http://pear.php.net/package/Console_Getopt",
@@ -6385,6 +6526,56 @@
             "time": "2019-08-20T13:31:17+00:00"
         },
         {
+            "name": "tightenco/collect",
+            "version": "v5.8.23",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tightenco/collect.git",
+                "reference": "1acfa2e6829e3db6fe9aaa27373efff11ba23c1e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tightenco/collect/zipball/1acfa2e6829e3db6fe9aaa27373efff11ba23c1e",
+                "reference": "1acfa2e6829e3db6fe9aaa27373efff11ba23c1e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3",
+                "symfony/var-dumper": ">=3.4 <5"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "nesbot/carbon": "^1.26.3",
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Collect/Support/helpers.php",
+                    "src/Collect/Support/alias.php"
+                ],
+                "psr-4": {
+                    "Tightenco\\Collect\\": "src/Collect"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "description": "Collect - Illuminate Collections as a separate package.",
+            "keywords": [
+                "collection",
+                "laravel"
+            ],
+            "time": "2019-06-06T14:01:55+00:00"
+        },
+        {
             "name": "twig/twig",
             "version": "v1.42.3",
             "source": {
@@ -7168,16 +7359,16 @@
         },
         {
             "name": "behat/mink-selenium2-driver",
-            "version": "1.3.x-dev",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/minkphp/MinkSelenium2Driver.git",
-                "reference": "0a09c4341621fca937a726827611b20ce3e2c259"
+                "reference": "8684ee4e634db7abda9039ea53545f86fc1e105a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/minkphp/MinkSelenium2Driver/zipball/0a09c4341621fca937a726827611b20ce3e2c259",
-                "reference": "0a09c4341621fca937a726827611b20ce3e2c259",
+                "url": "https://api.github.com/repos/minkphp/MinkSelenium2Driver/zipball/8684ee4e634db7abda9039ea53545f86fc1e105a",
+                "reference": "8684ee4e634db7abda9039ea53545f86fc1e105a",
                 "shasum": ""
             },
             "require": {
@@ -7205,14 +7396,14 @@
             ],
             "authors": [
                 {
-                    "name": "Pete Otaqui",
-                    "email": "pete@otaqui.com",
-                    "homepage": "https://github.com/pete-otaqui"
-                },
-                {
                     "name": "Konstantin Kudryashov",
                     "email": "ever.zet@gmail.com",
                     "homepage": "http://everzet.com"
+                },
+                {
+                    "name": "Pete Otaqui",
+                    "email": "pete@otaqui.com",
+                    "homepage": "https://github.com/pete-otaqui"
                 }
             ],
             "description": "Selenium2 (WebDriver) driver for Mink framework",
@@ -7225,7 +7416,7 @@
                 "testing",
                 "webdriver"
             ],
-            "time": "2019-09-02T09:46:54+00:00"
+            "time": "2018-10-10T12:39:06+00:00"
         },
         {
             "name": "composer/xdebug-handler",
@@ -7709,45 +7900,6 @@
                 "versions"
             ],
             "time": "2018-06-13T13:22:40+00:00"
-        },
-        {
-            "name": "josephlavin/tap",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/josephlavin/tap.git",
-                "reference": "8733d96fb9b7d7dca204dfe59ec3ff34f3c69be9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/josephlavin/tap/zipball/8733d96fb9b7d7dca204dfe59ec3ff34f3c69be9",
-                "reference": "8733d96fb9b7d7dca204dfe59ec3ff34f3c69be9",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.6.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~5.7"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/tap.php",
-                    "src/TapProxy.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Stand alone port of Laravel's tap method.",
-            "keywords": [
-                "laravel",
-                "php",
-                "tap"
-            ],
-            "time": "2017-09-24T23:36:28+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -10217,56 +10369,6 @@
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
             "time": "2019-04-04T09:56:43+00:00"
-        },
-        {
-            "name": "tightenco/collect",
-            "version": "v5.8.23",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tightenco/collect.git",
-                "reference": "1acfa2e6829e3db6fe9aaa27373efff11ba23c1e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tightenco/collect/zipball/1acfa2e6829e3db6fe9aaa27373efff11ba23c1e",
-                "reference": "1acfa2e6829e3db6fe9aaa27373efff11ba23c1e",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1.3",
-                "symfony/var-dumper": ">=3.4 <5"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.0",
-                "nesbot/carbon": "^1.26.3",
-                "phpunit/phpunit": "^7.0"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/Collect/Support/helpers.php",
-                    "src/Collect/Support/alias.php"
-                ],
-                "psr-4": {
-                    "Tightenco\\Collect\\": "src/Collect"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
-                }
-            ],
-            "description": "Collect - Illuminate Collections as a separate package.",
-            "keywords": [
-                "collection",
-                "laravel"
-            ],
-            "time": "2019-06-06T14:01:55+00:00"
         },
         {
             "name": "webflo/drupal-core-require-dev",
