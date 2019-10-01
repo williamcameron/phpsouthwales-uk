@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.person.field_person_type
     - node.type.person
   module:
     - path
@@ -17,6 +18,12 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_person_type:
+    weight: 121
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
   path:
     type: path
     weight: 30

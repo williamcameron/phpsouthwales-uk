@@ -1,0 +1,21 @@
+uuid: 2ec2a62f-63f6-46e1-8b0c-1caecdb6a193
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_person_type
+    - node.type.person
+  module:
+    - options
+id: node.person.field_person_type
+field_name: field_person_type
+entity_type: node
+bundle: person
+label: Type
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
