@@ -1,0 +1,38 @@
+id: phpsw_menu_items_main
+
+source:
+  plugin: embedded_data
+  data_rows:
+    - id: 1
+      title: Events
+      link: 'node/100'
+      weight: 2
+    - id: 2
+      title: Sponsors
+      link: 'node/101'
+      weight: 3
+  ids:
+    id: { type: integer }
+  constants:
+    menu_name: main
+
+process:
+  bundle:
+    plugin: default_value
+    default_value: menu_link_content
+  title: title
+  menu_name: constants/menu_name
+  link/uri:
+    plugin: link_uri
+    source:
+      - link
+  weight: weight
+  expanded: expanded
+  link/options: '@opts'
+
+destination:
+  plugin: entity:menu_link_content
+
+migration_dependencies:
+  required:
+    - phpsw_node_page
