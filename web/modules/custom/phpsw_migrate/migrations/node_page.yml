@@ -9,12 +9,15 @@ source:
     - id: 11
       title: Home
       body: ~
+      path: /home
     - id: 100
       title: Events
       body: ~
+      path: /events
     - id: 101
       title: Sponsors
       body: ~
+      path: /sponsors
   ids:
     id: { type: integer }
   constants:
@@ -25,6 +28,7 @@ process:
   nid: id
   title: title
   uid: constants/user_id
+  path: path
 
 destination:
   plugin: entity:node
