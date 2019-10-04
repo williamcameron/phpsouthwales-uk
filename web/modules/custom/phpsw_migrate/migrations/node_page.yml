@@ -9,6 +9,12 @@ source:
     - id: 2
       title: Home
       body: ~
+    - id: 100
+      title: Events
+      body: ~
+    - id: 101
+      title: Sponsors
+      body: ~
   ids:
     id: { type: integer }
   constants:
@@ -16,6 +22,7 @@ source:
 
 process:
   body: body
+  nid: id
   title: title
   uid: constants/user_id
 
