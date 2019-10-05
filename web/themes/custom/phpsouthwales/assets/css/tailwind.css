@@ -1,43 +1,9 @@
 /* @codingStandardsIgnoreFile */
 
-@tailwind base;
-@tailwind components;
+@import 'tailwindcss/base';
+@import './base.css';
 
-input {
-  @apply border border-gray-500;
-}
+@import 'tailwindcss/components';
+@import './components.css';
 
-.markup a {
-  @apply font-semibold text-red-900
-}
-.markup a:hover,
-.markup a:focus {
-  @apply text-red-700 underline
-}
-
-@tailwind utilities;
-
-@variants {
-  .sr-only {
-    position: absolute !important;
-    width: 1px !important;
-    height: 1px !important;
-    padding: 0 !important;
-    margin: -1px !important;
-    overflow: hidden !important;
-    clip: rect(0, 0, 0, 0) !important;
-    white-space: nowrap !important;
-    border-width: 0 !important;
-  }
-
-  .not-sr-only {
-    position: static !important;
-    width: auto !important;
-    height: auto !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    overflow: visible !important;
-    clip: auto !important;
-    white-space: normal !important;
-  }
-}
+@import 'tailwindcss/utilities';
