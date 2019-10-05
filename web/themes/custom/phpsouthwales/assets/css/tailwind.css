@@ -1,9 +1,9 @@
 /* @codingStandardsIgnoreFile */
 
 @import 'tailwindcss/base';
-@import './base.css';
 
 @import 'tailwindcss/components';
 @import './components.css';
+@import './components/forms.css';
 
 @import 'tailwindcss/utilities';
