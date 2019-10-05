@@ -1,1 +1,9 @@
 version: "2.1"
+services:
+  cli:
+    environment:
+      - MEETUP_EVENT_STATUSES
+      - MEETUP_GROUP_URL_NAME
+      - MYSQL_DATABASE
+      - MYSQL_PASSWORD
+      - MYSQL_USER
