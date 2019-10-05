@@ -1,10 +1,1 @@
-.markup {
-  a {
-    @apply font-semibold text-red-900;
-
-    &:hover,
-    &:focus {
-      @apply text-red-700 underline
-    }
-  }
-}
+@import './components/markup.css';
