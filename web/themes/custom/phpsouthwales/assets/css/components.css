@@ -1,7 +1,10 @@
-.markup a {
-  @apply font-semibold text-red-900
-}
-.markup a:hover,
-.markup a:focus {
-  @apply text-red-700 underline
+.markup {
+  a {
+    @apply font-semibold text-red-900;
+
+    &:hover,
+    &:focus {
+      @apply text-red-700 underline
+    }
+  }
 }
