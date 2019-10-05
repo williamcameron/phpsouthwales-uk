@@ -1,4 +1,7 @@
 global-styling:
   css:
     base:
-      dist/tailwind.css: {}
+      build/app.css: {}
+  js:
+    base:
+      build/app.js: {}

@@ -1,18 +1,22 @@
 {
   "private": true,
   "scripts": {
-    "build": "npm run dev",
-    "dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "development": "npm run dev",
+    "build": "npm run production",
+    "dev": "npm run development",
+    "development": "encore dev",
     "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "production": "encore production --progress",
+    "watch": "encore dev --watch"
   },
   "devDependencies": {
-    "cross-env": "^5.2.0",
-    "laravel-mix": "^4.1.2",
-    "laravel-mix-purgecss": "^4.1.0",
-    "tailwindcss": "^1.0.1",
+    "@symfony/webpack-encore": "^0.28.0",
+    "autoprefixer": "^9.6.2",
+    "glob-all": "^3.1.0",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "postcss-nested": "^4.1.2",
+    "purgecss-webpack-plugin": "^1.6.0",
+    "tailwindcss": "^1.1.2",
     "tailwindcss-spaced-items": "^0.1.0"
   }
 }
