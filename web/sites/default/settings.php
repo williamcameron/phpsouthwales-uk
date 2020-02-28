@@ -280,7 +280,7 @@ $config_directories = [];
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = '';
+$settings['hash_salt'] = getenv('DRUPAL_SALT');
 
 /**
  * Deployment identifier.
@@ -784,8 +784,8 @@ if (file_exists($app_root . '/' . $site_path . '/environments/settings.platforms
   include $app_root . '/' . $site_path . '/environments/settings.platformsh.php';
 }
 
-if (file_exists('/.dockerenv') && file_exists($app_root . '/' . $site_path . '/environments/settings.docksal.php')) {
-  include $app_root . '/' . $site_path . '/environments/settings.docksal.php';
+if (getenv('SYMFONY_DOCKER_ENV') && file_exists($app_root . '/' . $site_path . '/environments/settings.symfony.php')) {
+  include $app_root . '/' . $site_path . '/environments/settings.symfony.php';
 }
 
 /**
