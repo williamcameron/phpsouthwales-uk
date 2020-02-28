@@ -2304,6 +2304,10 @@
                     "homepage": "https://www.drupal.org/user/87775"
                 },
                 {
+                    "name": "mglaman",
+                    "homepage": "https://www.drupal.org/user/2416470"
+                },
+                {
                     "name": "pjcdawkins",
                     "homepage": "https://www.drupal.org/user/1025236"
                 },
@@ -3003,28 +3007,27 @@
         },
         {
             "name": "drupal/hook_event_dispatcher",
-            "version": "1.25.0",
+            "version": "1.27.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/hook_event_dispatcher.git",
-                "reference": "8.x-1.25"
+                "reference": "8.x-1.27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/hook_event_dispatcher-8.x-1.25.zip",
-                "reference": "8.x-1.25",
-                "shasum": "c5373f1c6537f542328281d5f37e2f6ff51e707a"
+                "url": "https://ftp.drupal.org/files/projects/hook_event_dispatcher-8.x-1.27.zip",
+                "reference": "8.x-1.27",
+                "shasum": "744f43ac5c2e676966f720c16d2108f76f402185"
             },
             "require": {
-                "drupal/core": "~8.0"
+                "drupal/core": "^8 || ^9"
             },
             "require-dev": {
-                "drupal/coder": "^8.3.1",
+                "drupal/coder": "8.3.1",
                 "drupal/core": "^8.7",
                 "drupal/webform": "*",
-                "jakub-onderka/php-console-highlighter": "^0.4.0",
                 "jakub-onderka/php-parallel-lint": "^1.0",
-                "phpmd/phpmd": "^2.6",
+                "phpmd/phpmd": "^2.7",
                 "phpunit/phpunit": "^5.7 || ^6.5",
                 "squizlabs/php_codesniffer": "^3.4"
             },
@@ -3038,8 +3041,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.25",
-                    "datestamp": "1560602285",
+                    "version": "8.x-1.27",
+                    "datestamp": "1577794983",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3183,7 +3186,7 @@
                 "shasum": "06390b359bf53c50a30f2d6dc4c7542bfb1fe7ca"
             },
             "require": {
-                "drupal/core": "^8.3",
+                "drupal/core": "^8 || ^9",
                 "drupal/migrate_plus": "^4 || ^5"
             },
             "require-dev": {
@@ -7053,6 +7056,7 @@
                 "psr",
                 "psr-7"
             ],
+            "abandoned": "laminas/laminas-diactoros",
             "time": "2018-09-05T19:29:37+00:00"
         },
         {
@@ -7098,6 +7102,7 @@
                 "escaper",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-escaper",
             "time": "2018-04-25T15:48:53+00:00"
         },
         {
@@ -7161,6 +7166,7 @@
                 "feed",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-feed",
             "time": "2019-03-05T20:08:49+00:00"
         },
         {
@@ -7207,6 +7213,7 @@
                 "stdlib",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-stdlib",
             "time": "2018-08-28T21:34:05+00:00"
         }
     ],
@@ -10524,6 +10531,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "require-dev dependencies from drupal/core",
+            "abandoned": "drupal/core-dev",
             "time": "2019-06-05T19:31:46+00:00"
         }
     ],
