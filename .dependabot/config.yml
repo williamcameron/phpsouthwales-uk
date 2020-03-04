@@ -9,7 +9,7 @@ update_configs:
     version_requirement_updates: 'off'
 
   - package_manager: javascript
-    directory: web/themes/custom/phpsouthwales
+    directory: src/themes/phpsouthwales
     update_schedule: weekly
     default_reviewers:
       - opdavies
