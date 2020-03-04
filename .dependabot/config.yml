@@ -6,10 +6,12 @@ update_configs:
     update_schedule: weekly
     default_reviewers:
       - opdavies
+    version_requirement_updates: off
 
   - package_manager: javascript
     directory: web/themes/custom/phpsouthwales
     update_schedule: weekly
     default_reviewers:
       - opdavies
+    version_requirement_updates: off
 
