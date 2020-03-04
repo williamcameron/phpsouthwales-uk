@@ -1,0 +1,15 @@
+version: 1
+
+update_configs:
+  - package_manager: php:composer
+    directory: /
+    update_schedule: weekly
+    default_reviewers:
+      - opdavies
+
+  - package_manager: javascript
+    directory: web/themes/custom/phpsouthwales
+    update_schedule: weekly
+    default_reviewers:
+      - opdavies
+
