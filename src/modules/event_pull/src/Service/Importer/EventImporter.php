@@ -4,7 +4,7 @@ namespace Drupal\event_pull\Service\Importer;
 
 use Drupal\advancedqueue\Entity\Queue;
 use Drupal\advancedqueue\Job;
-use Drupal\event_pull\Model\Event;
+use Drupal\event_pull\ValueObject\Event;
 use Drupal\event_pull\Service\EventLoader\EventLoaderInterface;
 
 /**

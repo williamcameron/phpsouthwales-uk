@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\event_pull\Model;
+namespace Drupal\event_pull\ValueObject;
 
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 
@@ -53,7 +53,7 @@ class Event {
   /**
    * Get the venue information.
    *
-   * @return \Drupal\event_pull\Model\Venue
+   * @return \Drupal\event_pull\ValueObject\Venue
    *   The venue model.
    */
   public function getVenue(): Venue {

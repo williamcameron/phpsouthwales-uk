@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\event_pull\Model;
+namespace Drupal\event_pull\ValueObject;
 
 /**
  * A value object for venue data.

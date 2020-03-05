@@ -2,7 +2,7 @@
 
 namespace Drupal\event_pull\Controller;
 
-use Drupal\event_pull\Model\Event;
+use Drupal\event_pull\ValueObject\Event;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\taxonomy\TermInterface;
@@ -12,7 +12,7 @@ class EventController {
   /**
    * Create a new event node.
    *
-   * @param \Drupal\event_pull\Model\Event $event
+   * @param \Drupal\event_pull\ValueObject\Event $event
    *   The event model.
    * @param \Drupal\taxonomy\TermInterface $venue
    *   The venue term.
@@ -53,7 +53,7 @@ class EventController {
    *
    * @param \Drupal\node\NodeInterface $node
    *   The event node.
-   * @param \Drupal\event_pull\Model\Event $event
+   * @param \Drupal\event_pull\ValueObject\Event $event
    *   The event model.
    *
    * @return \Drupal\node\NodeInterface

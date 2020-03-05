@@ -9,7 +9,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\event_pull\Controller\EventController;
-use Drupal\event_pull\Model\Event;
+use Drupal\event_pull\ValueObject\Event;
 use Drupal\event_pull\Service\Repository\EventRepository;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermInterface;
@@ -127,7 +127,7 @@ class CreateOrUpdateNodeForExternalEvent extends JobTypeBase implements Containe
   /**
    * Create an event term for the event.
    *
-   * @param \Drupal\event_pull\Model\Event $event
+   * @param \Drupal\event_pull\ValueObject\Event $event
    *   The event model.
    *
    * @return \Drupal\taxonomy\TermInterface
@@ -156,7 +156,7 @@ class CreateOrUpdateNodeForExternalEvent extends JobTypeBase implements Containe
   /**
    * Create the event node.
    *
-   * @param \Drupal\event_pull\Model\Event $event
+   * @param \Drupal\event_pull\ValueObject\Event $event
    *   The event model.
    * @param \Drupal\taxonomy\TermInterface $venue
    *   The venue term.

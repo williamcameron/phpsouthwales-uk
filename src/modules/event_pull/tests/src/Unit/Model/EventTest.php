@@ -2,20 +2,20 @@
 
 namespace Drupal\Tests\event_pull\Model;
 
-use Drupal\event_pull\Model\Event;
+use Drupal\event_pull\ValueObject\Event;
 use Drupal\Tests\UnitTestCase;
 
 /**
  * Event model tests.
  *
- * @coversDefaultClass \Drupal\event_pull\Model\Event
+ * @coversDefaultClass \Drupal\event_pull\ValueObject\Event
  */
 class EventTest extends UnitTestCase {
 
   /**
    * A test event.
    *
-   * @var \Drupal\event_pull\Model\Event
+   * @var \Drupal\event_pull\ValueObject\Event
    */
   private $event;
 
