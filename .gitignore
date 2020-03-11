@@ -1,5 +1,7 @@
-config/*/block.block.*
-vendor/
-web/
-.editorconfig
-.gitattributes
+*
+!*/
+/vendor
+!/web/modules/custom
+!/web/sites/default/settings.php
+!/web/sites/default/settings.symfony.php
+!/web/themes/custom
