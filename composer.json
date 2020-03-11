@@ -69,16 +69,6 @@
         "files": ["load.environment.php"]
     },
     "scripts": {
-        "link-modules-and-theme": [
-            "cd web/modules && ln -sf ../../src/modules custom",
-            "cd web/themes && ln -sf ../../src/themes custom"
-        ],
-        "post-install-cmd": [
-            "@link-modules-and-theme"
-        ],
-        "post-update-cmd": [
-            "@link-modules-and-theme"
-        ],
         "test-phpcs": "phpcs -v --standard=Drupal --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md --ignore=node_modules web/modules/custom web/themes/custom",
         "test-phpunit": "phpunit -c tools/phpunit web/modules/custom",
         "test-phpstan": "phpstan analyze",
