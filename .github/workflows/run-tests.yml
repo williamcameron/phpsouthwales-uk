@@ -44,6 +44,9 @@ jobs:
 
       - name: Execute tests
         run: make test
+        env:
+          SIMPLETEST_BASE_URL: http://localhost:8000
+          SYMFONY_DEPRECATIONS_HELPER: disabled
 
       - name: Stop the local web server
         run: symfony server:stop
