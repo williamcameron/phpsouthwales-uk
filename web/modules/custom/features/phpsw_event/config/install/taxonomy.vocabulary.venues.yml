@@ -3,5 +3,5 @@ status: true
 dependencies: {  }
 name: Venues
 vid: venues
-description: ''
+description: 'Venues for events.'
 weight: 0

@@ -10,7 +10,7 @@ entity_type: taxonomy_term
 bundle: venues
 label: 'Venue ID'
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

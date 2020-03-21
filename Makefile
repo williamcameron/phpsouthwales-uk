@@ -9,6 +9,10 @@ clean: web/themes/custom/phpsouthwales/build web/themes/custom/phpsouthwales/nod
 config-export:
 	symfony php vendor/bin/drush config:export -y
 
+features-export:
+	symfony php vendor/bin/drush features:export -y \
+		phpsw_event
+
 drupal-install: vendor web/sites/default/settings.php
 	symfony php vendor/bin/drush site:install -y \
 		--existing-config \
