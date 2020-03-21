@@ -26,8 +26,8 @@ module:
   file: 0
   filter: 0
   help: 0
-  hook_event_dispatcher: 0
   history: 0
+  hook_event_dispatcher: 0
   image: 0
   link: 0
   menu_ui: 0

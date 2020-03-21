@@ -37,4 +37,5 @@ hidden:
   field_event_date: true
   field_event_id: true
   field_event_link: true
+  field_rsvp_count: true
   field_venue: true
