@@ -31,8 +31,19 @@ jobs:
           extensions: mbstring
           coverage: none
 
+      - name: Install the Symfony local web server
+        run: |
+          wget https://get.symfony.com/cli/installer -O - | bash
+          mv /home/runner/.symfony/bin/symfony /usr/local/bin/symfony
+
       - name: Install dependencies
-        run: composer install --prefer-dist --no-interaction --no-suggest
+        run: symfony composer install --prefer-dist --no-interaction --no-suggest
+
+      - name: Start the local web server
+        run: symfony serve -d
 
       - name: Execute tests
         run: make test
+
+      - name: Stop the local web server
+        run: symfony server:stop
