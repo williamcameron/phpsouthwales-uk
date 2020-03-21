@@ -23,10 +23,21 @@ init: .env.example
 	make vendor
 	cp .env.example .env
 
-test:
-	symfony php vendor/bin/phpcs -v --standard=Drupal --extensions=php,module,inc,install,test,profile,theme,pcss,info,txt,md --ignore=node_modules,*/tests/* web/modules/custom web/themes/custom
+test-phpcs:
+	symfony php vendor/bin/phpcs -v \
+		--standard=Drupal \
+		--extensions=php,module,inc,install,test,profile,theme,pcss,info,txt,md \
+		--ignore=node_modules,*/tests/* \
+		web/modules/custom \
+		web/themes/custom
+
+test-phpstan:
 	symfony php vendor/bin/phpstan analyze
-	symfony php vendor/bin/phpunit -c tools/phpunit web/modules/custom --testdox
+
+test-phpunit:
+	symfony php vendor/bin/phpunit web/modules/custom --verbose --testdox
+
+test: test-phpcs test-phpstan test-phpunit
 
 theme-build: web/themes/custom/phpsouthwales/package.json web/themes/custom/phpsouthwales/package-lock.json
 	cd web/themes/custom/phpsouthwales && \
