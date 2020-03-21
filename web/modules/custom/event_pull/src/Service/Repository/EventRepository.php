@@ -10,6 +10,11 @@ use Tightenco\Collect\Support\Collection;
  */
 class EventRepository {
 
+  /**
+   * The properties to load events for.
+   *
+   * @var array
+   */
   private $properties = [
     'type' => 'event',
   ];
@@ -44,6 +49,9 @@ class EventRepository {
     return collect($this->nodeStorage->loadByProperties($this->properties));
   }
 
+  /**
+   * Find an event by it’s remote ID.
+   */
   public function findByRemoteId(int $remoteId): Collection {
     $this->properties['field_event_id'] = $remoteId;
 

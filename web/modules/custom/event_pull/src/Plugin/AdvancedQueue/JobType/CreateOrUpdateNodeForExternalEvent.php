@@ -42,6 +42,8 @@ class CreateOrUpdateNodeForExternalEvent extends JobTypeBase implements Containe
   private $termStorage;
 
   /**
+   * The event repository.
+   *
    * @var \Drupal\event_pull\Service\Repository\EventRepository
    */
   private $eventRepository;

@@ -7,6 +7,9 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\taxonomy\TermInterface;
 
+/**
+ * A controller for creating and updating event nodes.
+ */
 class EventController {
 
   /**

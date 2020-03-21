@@ -8,6 +8,7 @@ parameters:
     - *TestBase.php
   ignoreErrors:
     - '#Access to an undefined property object::\$.*#'
+    - '#Cannot call method enqueueJob() on Drupal\\advancedqueue\\Entity\\Queue|null.#'
 includes:
   - vendor/mglaman/phpstan-drupal/extension.neon
   - vendor/phpstan/phpstan-deprecation-rules/rules.neon

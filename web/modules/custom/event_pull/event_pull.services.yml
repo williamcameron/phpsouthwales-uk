@@ -1,4 +1,7 @@
 services:
+  Drupal\Core\Entity\EntityTypeManager:
+    alias: entity_type.manager
+
   Drupal\event_pull\Controller\EventController: ~
 
   Drupal\event_pull\EventSubscriber\ImportEvents:
@@ -18,3 +21,6 @@ services:
 
   Drupal\event_pull\Service\Repository\EventRepository:
     autowire: true
+
+  GuzzleHttp\ClientInterface:
+    alias: http_client
