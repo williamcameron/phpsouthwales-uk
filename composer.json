@@ -1,12 +1,12 @@
 {
-    "name": "drupal-composer/drupal-project",
-    "description": "Project template for Drupal 8 projects with composer",
+    "name": "php-south-wales/website",
+    "description": "Codebase for the PHP South Wales website",
     "type": "project",
     "license": "GPL-2.0-or-later",
     "authors": [
         {
-            "name": "",
-            "role": ""
+            "name": "Oliver Davies",
+            "role": "Developer"
         }
     ],
     "repositories": [
@@ -16,7 +16,7 @@
         },
         {
             "type": "path",
-            "url": "src/modules/event_pull"
+            "url": "web/modules/custom/event_pull"
         }
     ],
     "require": {
@@ -39,7 +39,7 @@
         "drush/drush": "^9.0.0",
         "opdavies/php-helpers": "^0.2.0",
         "platformsh/config-reader": "^2.2",
-        "vlucas/phpdotenv": "^2.4",
+        "vlucas/phpdotenv": "^4.1",
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3",
         "wikimedia/composer-merge-plugin": "^1.4",
@@ -63,19 +63,8 @@
         "sort-packages": true
     },
     "autoload": {
-        "classmap": [
-            "scripts/composer/ScriptHandler.php"
-        ],
-        "files": ["load.environment.php"]
-    },
-    "scripts": {
-        "test-phpcs": "phpcs -v --standard=Drupal --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md --ignore=node_modules web/modules/custom web/themes/custom",
-        "test-phpunit": "phpunit -c tools/phpunit web/modules/custom",
-        "test-phpstan": "phpstan analyze",
-        "test": [
-            "@test-phpcs",
-            "@test-phpstan",
-            "@test-phpunit"
+        "files": [
+            "load.environment.php"
         ]
     },
     "extra": {
