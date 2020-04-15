@@ -3,5 +3,6 @@
 /vendor
 !/web/modules/custom
 !/web/sites/default/settings.php
+!/web/sites/default/settings.platformsh.php
 !/web/sites/default/settings.symfony.php
 !/web/themes/custom
