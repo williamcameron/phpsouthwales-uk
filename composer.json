@@ -31,6 +31,7 @@
         "drupal/hook_event_dispatcher": "^1.25",
         "drupal/migrate_tools": "^4.1",
         "drupal/recreate_block_content": "^2.0",
+        "drupal/redirect": "^1.5",
         "drupal/tailwindcss": "^2.2",
         "drush/drush": "^9.0.0",
         "illuminate/support": "^7.6",
