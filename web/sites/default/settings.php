@@ -746,7 +746,7 @@ if (file_exists(__DIR__ . '/settings.platformsh.php')) {
   require_once(__DIR__ . '/settings.platformsh.php');
 }
 
-if ($_SERVER['SYMFONY_DEFAULT_ROUTE_URL'] && file_exists(__DIR__ . '/settings.symfony.php')) {
+if (env('SYMFONY_DEFAULT_ROUTE_URL') && file_exists(__DIR__ . '/settings.symfony.php')) {
   include $app_root . '/' . $site_path . '/settings.symfony.php';
 }
 
