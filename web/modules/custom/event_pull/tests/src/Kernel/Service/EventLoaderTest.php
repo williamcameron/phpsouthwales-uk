@@ -6,7 +6,7 @@ use Drupal\event_pull\ValueObject\Event;
 use Drupal\event_pull\Service\EventLoader\EventLoaderInterface;
 use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 use Drupal\Tests\event_pull\Traits\MockHttpClientTrait;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 /**
  * Test loading events from an external source.

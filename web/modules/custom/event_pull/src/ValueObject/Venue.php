@@ -10,7 +10,7 @@ class Venue {
   /**
    * The original venue data.
    *
-   * @var \Tightenco\Collect\Support\Collection
+   * @var \Illuminate\Support\Collection
    */
   private $data;
 

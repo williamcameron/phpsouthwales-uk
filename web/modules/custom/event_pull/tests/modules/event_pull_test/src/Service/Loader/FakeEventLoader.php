@@ -4,7 +4,7 @@ namespace Drupal\event_pull_test\Service\Loader;
 
 use Drupal\event_pull\ValueObject\Event;
 use Drupal\event_pull\Service\EventLoader\EventLoaderInterface;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 class FakeEventLoader implements EventLoaderInterface {
 

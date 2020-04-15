@@ -3,7 +3,7 @@
 namespace Drupal\event_pull\Service\Repository;
 
 use Drupal\Core\Entity\EntityTypeManager;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 /**
  * A repository for loading event nodes.
@@ -42,7 +42,7 @@ class EventRepository {
   /**
    * Return all events.
    *
-   * @return \Tightenco\Collect\Support\Collection
+   * @return \Illuminate\Support\Collection
    *   A collection of events.
    */
   public function getAll(): Collection {

@@ -4,7 +4,7 @@ namespace Drupal\event_pull\Service\EventLoader;
 
 use Drupal\event_pull\ValueObject\Event;
 use GuzzleHttp\ClientInterface;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 /**
  * Load events from an external API using GET requests from Guzzle.
