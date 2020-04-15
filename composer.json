@@ -37,7 +37,7 @@
         "drupal/recreate_block_content": "^2.0",
         "drupal/tailwindcss": "^2.2",
         "drush/drush": "^9.0.0",
-        "opdavies/php-helpers": "^0.2.0",
+        "illuminate/support": "^7.6",
         "platformsh/config-reader": "^2.2",
         "vlucas/phpdotenv": "^4.1",
         "webflo/drupal-finder": "^1.0.0",
