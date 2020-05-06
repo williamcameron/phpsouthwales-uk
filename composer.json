@@ -30,6 +30,7 @@
         "drupal/features": "^3.8",
         "drupal/hook_event_dispatcher": "^1.25",
         "drupal/migrate_tools": "^4.1",
+        "drupal/pathauto": "^1.8",
         "drupal/recreate_block_content": "^2.0",
         "drupal/redirect": "^1.5",
         "drupal/tailwindcss": "^2.2",
