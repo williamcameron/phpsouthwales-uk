@@ -1,6 +1,7 @@
 *
 !*/
 /vendor
+!/bin/*
 !/web/modules/custom
 !/web/sites/default/settings.php
 !/web/sites/default/settings.platformsh.php
