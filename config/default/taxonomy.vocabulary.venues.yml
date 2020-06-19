@@ -6,5 +6,5 @@ _core:
   default_config_hash: QP6xEyp6rz1l1FgHeAOZI5ofXyhwEl4mUg3vcxsL1ZI
 name: Venues
 vid: venues
-description: 'Venues for events.'
+description: ''
 weight: 0
