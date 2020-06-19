@@ -3,12 +3,13 @@ SHELL := /bin/bash -e -o pipefail
 asset_dir := tools/assets/development
 db_name := phpsouthwales.sql.gz
 db_path := ${asset_dir}/${db_name}
+theme_path := web/themes/custom/phpsouthwales
 
 .PHONY: *
 
-clean: web/themes/custom/phpsouthwales/build web/themes/custom/phpsouthwales/node_modules
+clean: ${theme_path}/build ${theme_path}/node_modules
 	rm -fr vendor
-	rm -fr web/themes/custom/phpsouthwales/{build,node_modules}
+	rm -fr ${theme_path}/{build,node_modules}
 
 config-export:
 	symfony php vendor/bin/drush config:export -y
@@ -62,8 +63,8 @@ test-phpunit:
 
 test: test-phpcs test-phpstan test-phpunit
 
-theme-build: web/themes/custom/phpsouthwales/package.json web/themes/custom/phpsouthwales/package-lock.json
-	cd web/themes/custom/phpsouthwales && \
+theme-build: ${theme_path}/package.json ${theme_path}/package-lock.json
+	cd ${theme_path} && \
 	npm install && \
 	npm run prod
 
