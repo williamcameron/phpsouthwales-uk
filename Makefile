@@ -1,4 +1,8 @@
-SHELL := /bin/bash
+SHELL := /bin/bash -e -o pipefail
+
+asset_dir := tools/assets/development
+db_name := phpsouthwales.sql.gz
+db_path := ${asset_dir}/${db_name}
 
 .PHONY: *
 
@@ -26,6 +30,21 @@ drupal-post-install: web/sites/default/settings.php
 init: .env.example
 	make vendor
 	cp .env.example .env
+
+pull-from-prod:
+	# Download a fresh database from Platform.sh.
+	platform db:dump -e master --gzip -f ${db_path}
+
+refresh:
+	# - Re-import and sanitise the database.
+	# - Run any database updates.
+	# - Rebuild the Drupal cache.
+	stat ${db_path} || exit 1
+	bin/drush.sh sql-drop -y
+	zcat < ${db_path} | bin/drush.sh sql-cli
+	bin/drush.sh sql-sanitize -y --sanitize-password=password
+	bin/drush.sh updatedb -y
+	bin/drush.sh cache-rebuild
 
 test-phpcs:
 	symfony php vendor/bin/phpcs -v \
