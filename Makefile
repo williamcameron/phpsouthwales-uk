@@ -12,21 +12,21 @@ clean: ${theme_path}/build ${theme_path}/node_modules
 	rm -fr ${theme_path}/{build,node_modules}
 
 config-export:
-	symfony php vendor/bin/drush config:export -y
+	bin/drush.sh config:export -y
 
 features-export:
-	symfony php vendor/bin/drush features:export -y \
+	bin/drush.sh features:export -y \
 		phpsw_event
 
 drupal-install: vendor web/sites/default/settings.php
-	symfony php vendor/bin/drush site:install -y \
+	bin/drush.sh site:install -y \
 		--existing-config \
 		--no-interaction && \
-	symfony php vendor/bin/drush cache:rebuild
+	bin/drush.sh cache:rebuild
 
 drupal-post-install: web/sites/default/settings.php
-	symfony php vendor/bin/drush migrate:import --all
-	symfony php vendor/bin/drush core:cron
+	bin/drush.sh migrate:import --all
+	bin/drush.sh core:cron
 
 init: .env.example
 	make vendor
@@ -67,8 +67,7 @@ theme-build: ${theme_path}/package.json ${theme_path}/package-lock.json
 	cd ${theme_path} && \
 	npm install && \
 	npm run prod
-
-	symfony php vendor/bin/drush cache:rebuild
+	bin/drush.sh cache:rebuild
 
 vendor: composer.json
 	symfony composer validate
