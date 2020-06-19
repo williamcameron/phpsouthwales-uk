@@ -64,9 +64,9 @@ hooks:
       cd web
       drush cache-rebuild -y
       drush updatedb -y
-      drush config-import -y
-      drush features:import:all -y
-      drush migrate:import --all -y
+      # drush config-import -y
+      # drush features:import:all -y
+      # drush migrate:import --all -y
       drush cron
       drush advancedqueue:queue:process event_pull
       drush cache-rebuild -y
