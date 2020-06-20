@@ -5,11 +5,17 @@
  */
 
 use Drupal\Core\Installer\InstallerKernel;
+use Platformsh\ConfigReader\Config;
 
-$platformsh = new \Platformsh\ConfigReader\Config();
+$platformsh = new Config();
+
+if (!$platformsh->isValidPlatform()) {
+  return;
+}
 
 // Configure the database.
 $creds = $platformsh->credentials('database');
+
 $databases['default']['default'] = [
   'driver' => $creds['scheme'],
   'database' => $creds['path'],
