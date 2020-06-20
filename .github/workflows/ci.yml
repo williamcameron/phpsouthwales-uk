@@ -36,14 +36,20 @@ jobs:
 
       - name: Start a web server
         run: php -S localhost:8000 -t web 2>&1 &
+        env:
+          APP_ENV: ci
 
       - name: Test loading the home page.
         run: >
           curl http://localhost:8000
+        env:
+          APP_ENV: ci
 
       - name: Verify the home page has the site name in it.
         run: >
           curl -s http://localhost:8000 | grep "PHP South Wales"
+        env:
+          APP_ENV: ci
 
   tests:
     runs-on: ubuntu-latest

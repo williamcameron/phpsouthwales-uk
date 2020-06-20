@@ -741,6 +741,12 @@ $settings['entity_update_batch_size'] = 50;
  */
 $settings['entity_update_backup'] = TRUE;
 
+if (getenv('APP_ENV') == 'ci') {
+  $settings['trusted_host_patterns'] = [
+    '^localhost$',
+  ];
+}
+
 // Include automatic Platform.sh settings.
 if (file_exists(__DIR__ . '/settings.platformsh.php')) {
   require_once(__DIR__ . '/settings.platformsh.php');
