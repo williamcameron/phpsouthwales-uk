@@ -48,3 +48,7 @@ if (file_exists($app_root . '/' . $site_path . '/settings.platformsh.php')) {
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
 }
+
+// event_pull settings.
+$config['event_pull.config']['meetup_event_statuses'] = env('MEETUP_EVENT_STATUSES');
+$config['event_pull.config']['meetup_group_url_name'] = env('MEETUP_GROUP_URL_NAME');

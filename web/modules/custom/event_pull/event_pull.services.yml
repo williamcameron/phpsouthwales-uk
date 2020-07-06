@@ -1,4 +1,7 @@
 services:
+  Drupal\Core\Config\ConfigFactoryInterface:
+    alias: config.factory
+
   Drupal\Core\Entity\EntityTypeManager:
     alias: entity_type.manager
 

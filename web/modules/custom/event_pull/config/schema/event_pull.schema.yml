@@ -1,0 +1,8 @@
+event_pull.config:
+  type: config_object
+  label: 'Event Pull configuration'
+  mapping:
+    meetup_event_statuses:
+      type: string
+    meetup_url_name:
+      type: string
