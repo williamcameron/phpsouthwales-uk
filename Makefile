@@ -59,7 +59,7 @@ test-phpstan:
 	symfony php vendor/bin/phpstan analyze
 
 test-phpunit:
-	symfony php vendor/bin/phpunit web/modules/custom --verbose --testdox
+	symfony php vendor/bin/phpunit web/modules/custom --colors=always --testdox
 
 test: test-phpcs test-phpstan test-phpunit
 
