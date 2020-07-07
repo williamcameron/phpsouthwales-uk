@@ -1,0 +1,7 @@
+/.dependabot/
+/.github/
+/.git/
+/.platform/
+/Makefile
+/README.md
+/**/node_modules/

@@ -4,17 +4,17 @@ The Drupal codebase for the [PHP South Wales user group](https://www.phpsouthwal
 
 ## Local environment
 
-The project is using the [Symfony web server](https://symfony.com/doc/current/setup/symfony_server.html) for local development.
+The project is using Docker and Docker Compose for local development.
 
-First, install the PHP dependencies using Composer:
+Run the `make` command to create the required files, download Drupal core, the additional contrib modules and PHP libraries, install Drupal, and generate the theme assets.
 
-    symfony composer install
-
-This will download Drupal core, the additional contrib modules and PHP libraries.
+If you are using [Traefik](https://docs.traefik.io) (recommended), then the site should now be available at <http://phpsouthwales.docker.localhost>.
 
 ## Updating Drupal core using Composer
 
-    symfony composer update 'drupal/core-*'
+This can be done using the `bin/composer.sh` helper:
+
+    bin/composer.sh update 'drupal/core-*'
 
 ## Hosting
 

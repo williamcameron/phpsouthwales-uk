@@ -1,13 +1,67 @@
-version: '2.1'
+version: '3.4'
 
 services:
-  database:
-    image: mysql:5.7
-    ports: [3306]
-    environment:
-      MYSQL_ROOT_PASSWORD: secret
+  nginx:
+    container_name: phpsouthwales-nginx
+    build:
+      context: .
+      dockerfile: tools/docker/nginx/Dockerfile
+    volumes:
+      - ./web:/srv/app/web
+    # ports: [ "8081:80" ]
+    depends_on:
+      - mysql
+      - php
+    labels:
+      - "traefik.docker.network=traefik"
+      - "traefik.http.routers.phpsouthwales.rule=Host(`phpsouthwales.docker.localhost`)"
+    networks:
+      - traefik
+      - internal
+
+  php:
+    image: phpsouthwales-php
+    container_name: phpsouthwales-php
+    build:
+      context: .
+      dockerfile: tools/docker/php/Dockerfile
+    volumes:
+      - .:/srv/app
+    links:
+      - mysql
+    networks:
+      - internal
+
+  mysql:
+    container_name: phpsouthwales-mysql
+    image: mariadb:10
+    env_file:
+      - .docker.env
+      - .env
     volumes:
       - mysql-data:/var/lib/mysql
+    networks:
+      - internal
+
+  composer:
+    container_name: phpsouthwales-composer
+    build:
+      context: .
+      dockerfile: tools/docker/composer/Dockerfile
+    volumes:
+      - .:/app
+
+  node:
+    container_name: phpsouthwales-node
+    image: node:12
+    volumes:
+      - .:/app
+    working_dir: /app/web/themes/custom/phpsouthwales
+
+networks:
+  traefik:
+    external: true
+  internal:
 
 volumes:
   mysql-data:

@@ -27,8 +27,16 @@ jobs:
           extensions: mbstring
           coverage: none
 
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-interaction --no-suggest
+      # - name: Install dependencies
+      #   run: composer install --prefer-dist --no-interaction --no-suggest
+
+      - run: |
+          cp .env.example .env
+          cp .docker.env.example .docker.env
+          docker network create traefik
+          docker-compose -f docker-compose.yaml -f .github/docker-compose.override.yaml up -d
+
+      - run: make vendor
 
       - name: Install Drupal
         run: >

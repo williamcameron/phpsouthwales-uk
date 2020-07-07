@@ -1,74 +1,40 @@
-SHELL := /bin/bash -e -o pipefail
+DB_DIR := tools/assets/development
+DB_NAME := drupal.sql.gz
+DB_PATH := $(DB_DIR)/$(DB_NAME)
+RUN_NODE := docker-compose run --rm node
+RUN_PHP := docker-compose run --rm php
+THEME_PATH := web/themes/custom/phpsouthwales
 
-asset_dir := tools/assets/development
-db_name := phpsouthwales.sql.gz
-db_path := ${asset_dir}/${db_name}
-theme_path := web/themes/custom/phpsouthwales
+.PHONY: default console copy-required-files start stop test-unit theme-build install-drupal
 
-.PHONY: *
+default: copy-required-files start vendor theme-build install-drupal test-unit
 
-clean: ${theme_path}/build ${theme_path}/node_modules
-	rm -fr vendor
-	rm -fr ${theme_path}/{build,node_modules}
+console:
+	docker-compose run --rm php bash
 
-config-export:
-	bin/drush.sh config:export -y
-
-features-export:
-	bin/drush.sh features:export -y \
-		phpsw_event
-
-drupal-install: vendor web/sites/default/settings.php
-	bin/drush.sh site:install -y \
-		--existing-config \
-		--no-interaction && \
-	bin/drush.sh cache:rebuild
-
-drupal-post-install: web/sites/default/settings.php
-	bin/drush.sh migrate:import --all
-	bin/drush.sh core:cron
-
-init: .env.example
-	make vendor
+copy-required-files:
+	cp .docker.env.example .docker.env
 	cp .env.example .env
+	cp web/sites/example.settings.local.php web/sites/default/settings.local.php
 
-pull-from-prod:
-	# Download a fresh database from Platform.sh.
-	platform db:dump -e master --gzip -f ${db_path}
+install-drupal:
+	bin/drush.sh site:install -y config_installer --account-pass=admin123
+	bin/drush.sh migrate:import --all
+	bin/drush.sh sql:dump --gzip > $(DB_PATH)
 
-refresh:
-	# - Re-import and sanitise the database.
-	# - Run any database updates.
-	# - Rebuild the Drupal cache.
-	stat ${db_path} || exit 1
-	bin/drush.sh sql-drop -y
-	zcat < ${db_path} | bin/drush.sh sql-cli
-	bin/drush.sh sql-sanitize -y --sanitize-password=password
-	bin/drush.sh updatedb -y
-	bin/drush.sh cache-rebuild
+start:
+	docker-compose up -d
 
-test-phpcs:
-	symfony php vendor/bin/phpcs -v \
-		--standard=Drupal \
-		--extensions=php,module,inc,install,test,profile,theme,pcss,info,txt,md \
-		--ignore=node_modules,*/tests/* \
-		web/modules/custom \
-		web/themes/custom
+stop:
+	docker-compose down --remove-orphans
 
-test-phpstan:
-	symfony php vendor/bin/phpstan analyze
+test-unit:
+	$(RUN_PHP) vendor/bin/phpunit web/modules/custom
 
-test-phpunit:
-	symfony php vendor/bin/phpunit web/modules/custom --verbose --testdox
+theme-build: $(THEME_PATH)/package.json $(THEME_PATH)/package-lock.json
+	$(RUN_NODE) npm install
+	$(RUN_NODE) npm run dev
 
-test: test-phpcs test-phpstan test-phpunit
-
-theme-build: ${theme_path}/package.json ${theme_path}/package-lock.json
-	cd ${theme_path} && \
-	npm install && \
-	npm run prod
-	bin/drush.sh cache:rebuild
-
-vendor: composer.json
-	symfony composer validate
-	symfony composer install
+vendor: composer.json composer.lock
+	bin/composer.sh validate --strict
+	bin/composer.sh install

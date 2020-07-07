@@ -1,8 +1,15 @@
 *
 !*/
 /vendor
+!/.docker.env.example
+!/.dockerignore
+!/.github/**
 !/bin/*
+!/docker-compose.yaml
+!/Makefile
+!/tools/docker/**
 !/web/modules/custom
+!/web/sites/example.settings.local.php
 !/web/sites/default/settings.php
 !/web/sites/default/settings.platformsh.php
 !/web/sites/default/settings.symfony.php

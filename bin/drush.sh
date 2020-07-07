@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-symfony php vendor/bin/drush --root $(pwd)/web "$@"
+docker-compose run --rm php vendor/bin/drush "$@"
