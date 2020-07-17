@@ -20,33 +20,21 @@ jobs:
           path: ~/.composer/cache/files
           key: dependencies-composer-${{ hashFiles('composer.json') }}
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 7.3
-          extensions: mbstring
-          coverage: none
-
-      # - name: Install dependencies
-      #   run: composer install --prefer-dist --no-interaction --no-suggest
-
-      - run: |
+      - name: Start Docker
+        run: |
           cp .env.example .env
           cp .docker.env.example .docker.env
           docker network create traefik
           docker-compose -f docker-compose.yaml -f .github/docker-compose.override.yaml up -d
 
-      - run: make vendor
+      - name: Install dependencies
+        run: make vendor
 
       - name: Install Drupal
         run: >
-          vendor/bin/drush --root=$(pwd)/web
+          ./bin/drush.sh
           site:install -y
           config_installer
-          --db-url=sqlite://sites/defalt/files/.ht.sqlite
-
-      - name: Start a web server
-        run: php -S localhost:8000 -t web 2>&1 &
 
       - name: Test loading the home page.
         run: >
@@ -69,28 +57,17 @@ jobs:
           path: ~/.composer/cache/files
           key: dependencies-composer-${{ hashFiles('composer.json') }}
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 7.3
-          extensions: mbstring
-          coverage: none
-
-      - name: Install the Symfony local web server
+      - name: Start Docker
         run: |
-          wget https://get.symfony.com/cli/installer -O - | bash
-          mv /home/runner/.symfony/bin/symfony /usr/local/bin/symfony
+          cp .env.example .env
+          cp .docker.env.example .docker.env
+          docker network create traefik
+          docker-compose -f docker-compose.yaml -f .github/docker-compose.override.yaml up -d
 
       - name: Install dependencies
-        run: symfony composer install --prefer-dist --no-interaction --no-suggest
-
-      - name: Start the local web server
-        run: symfony serve -d
+        run: make vendor
 
       - name: Execute tests
-        run: make test
+        run: make test-unit
         env:
           SIMPLETEST_BASE_URL: http://localhost:8000
-
-      - name: Stop the local web server
-        run: symfony server:stop
