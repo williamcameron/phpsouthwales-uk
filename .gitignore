@@ -1,6 +1,7 @@
 *
 !*/
 /vendor
+!/.github/**
 !/bin/*
 !/web/modules/custom
 !/web/sites/default/settings.php
