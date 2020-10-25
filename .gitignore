@@ -1,6 +1,7 @@
 *
 !*/
 /vendor
+!/.ddev/**
 !/.github/**
 !/bin/*
 !/web/modules/custom
