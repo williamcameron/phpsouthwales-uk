@@ -26,6 +26,7 @@ jobs:
           php-version: 7.3
           extensions: mbstring
           coverage: none
+          tools: composer:v1
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-interaction --no-suggest
@@ -67,6 +68,7 @@ jobs:
           php-version: 7.3
           extensions: mbstring
           coverage: none
+          tools: composer:v1
 
       - name: Install the Symfony local web server
         run: |
