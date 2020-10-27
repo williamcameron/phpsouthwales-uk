@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+make drupal-install
+make drupal-post-install
