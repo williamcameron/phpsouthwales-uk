@@ -4,17 +4,15 @@ The Drupal codebase for the [PHP South Wales user group](https://www.phpsouthwal
 
 ## Local environment
 
-The project is using the [Symfony web server](https://symfony.com/doc/current/setup/symfony_server.html) for local development.
+The project is using DDEV for local development.
 
-First, install the PHP dependencies using Composer:
+### Installing the site
 
-    symfony composer install
-
-This will download Drupal core, the additional contrib modules and PHP libraries.
+To install the site from scratch, run `ddev drupal-site-install`. This will install Drupal from the existing configuration, build the theme assets, and import a set of events from Meetup.com.
 
 ## Updating Drupal core using Composer
 
-    symfony composer update 'drupal/core-*'
+    ddev composer update 'drupal/core-*'
 
 ## Hosting
 
