@@ -17,6 +17,7 @@ webimage_extra_packages: [make]
 hooks:
   post-start:
     - composer: install
+    - exec: make theme-build
 
 # This config.yaml was created with ddev version v1.15.3
 # webimage: drud/ddev-webserver:v1.15.3
