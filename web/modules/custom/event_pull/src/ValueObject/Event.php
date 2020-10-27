@@ -14,7 +14,7 @@ class Event {
    *
    * @var object
    */
-  private $eventData;
+  private object $eventData;
 
   /**
    * Event constructor.

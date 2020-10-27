@@ -7,6 +7,7 @@ use Drupal\advancedqueue\JobResult;
 use Drupal\advancedqueue\Plugin\AdvancedQueue\JobType\JobTypeBase;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\event_pull\Controller\EventController;
 use Drupal\event_pull\ValueObject\Event;
@@ -32,28 +33,28 @@ class CreateOrUpdateNodeForExternalEvent extends JobTypeBase implements Containe
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  private $nodeStorage;
+  private EntityStorageInterface $nodeStorage;
 
   /**
    * The taxonomy term entity storage.
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  private $termStorage;
+  private EntityStorageInterface $termStorage;
 
   /**
    * The event repository.
    *
    * @var \Drupal\event_pull\Service\Repository\EventRepository
    */
-  private $eventRepository;
+  private EventRepository $eventRepository;
 
   /**
    * The event controller.
    *
    * @var \Drupal\event_pull\Controller\EventController
    */
-  private $eventController;
+  private EventController $eventController;
 
   /**
    * PulledEvent constructor.

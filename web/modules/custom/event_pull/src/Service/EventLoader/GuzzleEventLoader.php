@@ -16,7 +16,7 @@ abstract class GuzzleEventLoader implements EventLoaderInterface {
    *
    * @var \GuzzleHttp\ClientInterface
    */
-  protected $client;
+  protected ClientInterface $client;
 
   /**
    * GuzzleEventLoader constructor.

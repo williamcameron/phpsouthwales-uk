@@ -15,7 +15,7 @@ class EventRepository {
    *
    * @var array
    */
-  private $properties = [
+  private array $properties = [
     'type' => 'event',
   ];
 

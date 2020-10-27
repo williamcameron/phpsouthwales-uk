@@ -2,6 +2,8 @@
 
 namespace Drupal\event_pull\ValueObject;
 
+use \Illuminate\Support\Collection;
+
 /**
  * A value object for venue data.
  */
@@ -12,7 +14,7 @@ class Venue {
    *
    * @var \Illuminate\Support\Collection
    */
-  private $data;
+  private Collection $data;
 
   /**
    * Venue constructor.

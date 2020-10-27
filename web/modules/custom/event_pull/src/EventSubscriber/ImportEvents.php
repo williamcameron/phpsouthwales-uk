@@ -16,7 +16,7 @@ class ImportEvents implements EventSubscriberInterface {
    *
    * @var \Drupal\event_pull\Service\Importer\EventImporter
    */
-  private $eventImporter;
+  private EventImporter $eventImporter;
 
   /**
    * ImportEvents constructor.

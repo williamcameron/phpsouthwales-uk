@@ -17,7 +17,7 @@ class EventImporter {
    *
    * @var \Drupal\event_pull\Service\EventLoader\EventLoaderInterface
    */
-  private $eventLoader;
+  private EventLoaderInterface $eventLoader;
 
   /**
    * EventImporter constructor.
