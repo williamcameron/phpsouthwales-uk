@@ -27,6 +27,7 @@ drupal-install: vendor web/sites/default/settings.php
 drupal-post-install: web/sites/default/settings.php
 	drush migrate:import --all
 	drush core:cron
+	drush advancedqueue:queue:process event_pull
 
 init: .env.example
 	make vendor
